@@ -1,7 +1,7 @@
 <a id="install-vipermesh-blender-mcp"></a>
 # Instalar ViperMesh Blender MCP
 
-Página canónica: https://ker102.github.io/vipermesh-blender/setup/
+Página canónica: https://openrootdev.github.io/vipermesh-blender/setup/
 
 
 
@@ -46,7 +46,7 @@ Sin un importador MCPB, extrae el bundle como ZIP en un directorio permanente. C
 
 Compilar desde código fuente
 
-git clone https://github.com/Ker102/vipermesh-blender.git
+git clone https://github.com/OpenRootdev/vipermesh-blender.git
 cd vipermesh-blender
 npm install
 npm run build
@@ -102,6 +102,6 @@ No. Es un conector local de confianza. El fallback Python puede ejecutar código
 
 Informar un problema de configuración · Documentación para agentes · Listado de Harness Library
 
-Configuración de cliente: https://github.com/Ker102/vipermesh-blender/blob/main/docs/client-setup.md
-Bundle y checksums: https://github.com/Ker102/vipermesh-blender/blob/main/docs/mcp-distribution.md
-Seguridad: https://github.com/Ker102/vipermesh-blender/blob/main/SECURITY.md
+Configuración de cliente: https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/client-setup.md
+Bundle y checksums: https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/mcp-distribution.md
+Seguridad: https://github.com/OpenRootdev/vipermesh-blender/blob/main/SECURITY.md

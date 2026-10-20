@@ -47,6 +47,6 @@ ViperMesh for Blender の主な変更をすべてここに記録します。
 - 本当に独自の Blender 作業が必要な場合の、明示的な `execute_code` フォールバック。
 - ローカル限定のループバック通信と公開リリースの検証。
 
-[未リリース]: https://github.com/Ker102/vipermesh-blender/compare/v1.3.0...HEAD
-[1.3.0]: https://github.com/Ker102/vipermesh-blender/compare/v1.2.0...v1.3.0
-[1.2.0]: https://github.com/Ker102/vipermesh-blender/releases/tag/v1.2.0
+[未リリース]: https://github.com/OpenRootdev/vipermesh-blender/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/OpenRootdev/vipermesh-blender/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/OpenRootdev/vipermesh-blender/releases/tag/v1.2.0

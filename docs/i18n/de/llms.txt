@@ -8,8 +8,8 @@
 > Blender-Aktionen reduzieren generierten Code für abgedeckte Aufgaben, während
 > Szenenprüfungen dem Assistenten helfen, seine Arbeit zu inspizieren und zu reparieren.
 
-Kanonisches Repository: https://github.com/Ker102/vipermesh-blender
-Projektübersicht: https://ker102.github.io/vipermesh-blender/
+Kanonisches Repository: https://github.com/OpenRootdev/vipermesh-blender
+Projektübersicht: https://openrootdev.github.io/vipermesh-blender/
 Lizenz: MIT
 Runtime: Node.js 20+ und Blender
 Transport: MCP über stdio, dann eine Loopback-TCP-Bridge zu Blender
@@ -17,15 +17,15 @@ Transport: MCP über stdio, dann eine Loopback-TCP-Bridge zu Blender
 <a id="primary-documentation"></a>
 ## Primäre Dokumentation
 
-- Installation und Fehlerbehebung: https://ker102.github.io/vipermesh-blender/setup/index.md
-- Übersicht in Alltagssprache: https://ker102.github.io/vipermesh-blender/index.md
+- Installation und Fehlerbehebung: https://openrootdev.github.io/vipermesh-blender/setup/index.md
+- Übersicht in Alltagssprache: https://openrootdev.github.io/vipermesh-blender/index.md
 
-- README: https://github.com/Ker102/vipermesh-blender#readme
-- Connector-Handbuch: https://github.com/Ker102/vipermesh-blender/blob/main/docs/portable-blender-mcp.md
-- MCP-Client-Einrichtung: https://github.com/Ker102/vipermesh-blender/blob/main/docs/client-setup.md
-- Agent-Skill: https://github.com/Ker102/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md
-- Sicherheitsgrenze: https://github.com/Ker102/vipermesh-blender/blob/main/SECURITY.md
-- Releases: https://github.com/Ker102/vipermesh-blender/releases
+- README: https://github.com/OpenRootdev/vipermesh-blender#readme
+- Connector-Handbuch: https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/portable-blender-mcp.md
+- MCP-Client-Einrichtung: https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/client-setup.md
+- Agent-Skill: https://github.com/OpenRootdev/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md
+- Sicherheitsgrenze: https://github.com/OpenRootdev/vipermesh-blender/blob/main/SECURITY.md
+- Releases: https://github.com/OpenRootdev/vipermesh-blender/releases
 
 <a id="key-facts"></a>
 ## Wichtige Fakten

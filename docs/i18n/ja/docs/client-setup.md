@@ -19,7 +19,7 @@ ViperMesh for Blender には、二つのローカル接続があります。
 リポジトリをクローンし、依存関係をインストールしてビルドします。
 
 ```bash
-git clone https://github.com/Ker102/vipermesh-blender.git
+git clone https://github.com/OpenRootdev/vipermesh-blender.git
 cd vipermesh-blender
 npm install
 npm run build

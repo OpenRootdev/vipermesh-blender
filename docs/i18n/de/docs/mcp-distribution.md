@@ -10,7 +10,7 @@ ViperMesh Studio noch dessen vollständiges benchmarked harness.
 
 - [Smithery: ker102/vipermesh-blender](https://smithery.ai/servers/ker102/vipermesh-blender)
 - [Official MCP Registry: io.github.Ker102/vipermesh-blender](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.Ker102/vipermesh-blender)
-- [GitHub release v1.3.0](https://github.com/Ker102/vipermesh-blender/releases/tag/v1.3.0)
+- [GitHub release v1.3.0](https://github.com/OpenRootdev/vipermesh-blender/releases/tag/v1.3.0)
 
 Die offizielle Registry hostet Metadaten. Das MCPB-Paket wird im GitHub-Release
 gehostet. Smitherys Listing enthält ebenfalls dasselbe Bundle und die neun
@@ -20,8 +20,8 @@ MCP-Tool-Schemas, die vom paketierten Server entdeckt wurden.
 ## Bundle-Einrichtung
 
 1. Installiere und aktiviere das Blender-Add-on mithilfe der [Hauptinstallationsanleitung](../README.md#install).
-2. Lade [vipermesh-blender-1.3.0.mcpb](https://github.com/Ker102/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb)
-   und die zugehörige [SHA-256-Datei](https://github.com/Ker102/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb.sha256) herunter.
+2. Lade [vipermesh-blender-1.3.0.mcpb](https://github.com/OpenRootdev/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb)
+   und die zugehörige [SHA-256-Datei](https://github.com/OpenRootdev/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb.sha256) herunter.
 3. Importiere das Bundle in einen MCPB-kompatiblen Client und befolge dessen
    lokale Erweiterungsanweisungen. Node.js wird von der Launch-Konfiguration des
    Bundles benötigt. Belasse den Bridge-Port bei `9876`, sofern dein Add-on

@@ -68,6 +68,6 @@ Todas as alterações notáveis no ViperMesh for Blender são documentadas aqui.
   personalizado.
 - Transporte loopback somente local e validação de release público.
 
-[Não lançado]: https://github.com/Ker102/vipermesh-blender/compare/v1.3.0...HEAD
-[1.3.0]: https://github.com/Ker102/vipermesh-blender/compare/v1.2.0...v1.3.0
-[1.2.0]: https://github.com/Ker102/vipermesh-blender/releases/tag/v1.2.0
+[Não lançado]: https://github.com/OpenRootdev/vipermesh-blender/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/OpenRootdev/vipermesh-blender/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/OpenRootdev/vipermesh-blender/releases/tag/v1.2.0

@@ -6,8 +6,8 @@
 <a id="current-release"></a>
 ## 現在のリリース
 
-- リポジトリ: https://github.com/Ker102/vipermesh-blender
-- リリース対象: https://github.com/Ker102/vipermesh-blender/releases/tag/v1.3.0
+- リポジトリ: https://github.com/OpenRootdev/vipermesh-blender
+- リリース対象: https://github.com/OpenRootdev/vipermesh-blender/releases/tag/v1.3.0
 - ソースのリリース対象: `v1.3.0`
 - Blender 互換性の対象: 5.2
 - CI: 独立した型チェック、適合性テスト、ビルド、パッケージ検証、npm 監査、アドオンの Python コンパイル

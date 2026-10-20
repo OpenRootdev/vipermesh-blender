@@ -8,7 +8,7 @@ ViperMesh for Blender 作为本地 stdio 连接器发布。它不托管 Blender�
 
 - [Smithery: ker102/vipermesh-blender](https://smithery.ai/servers/ker102/vipermesh-blender)
 - [Official MCP Registry: io.github.Ker102/vipermesh-blender](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.Ker102/vipermesh-blender)
-- [GitHub release v1.3.0](https://github.com/Ker102/vipermesh-blender/releases/tag/v1.3.0)
+- [GitHub release v1.3.0](https://github.com/OpenRootdev/vipermesh-blender/releases/tag/v1.3.0)
 
 官方注册表托管元数据。MCPB 包托管在 GitHub release 中。Smithery 的列表也包含相同 bundle，以及从打包服务器发现的九个 MCP 工具 schema。
 
@@ -16,8 +16,8 @@ ViperMesh for Blender 作为本地 stdio 连接器发布。它不托管 Blender�
 ## Bundle 设置
 
 1. 使用[主安装指南](../README.md#install)安装并启用 Blender 插件。
-2. 下载 [vipermesh-blender-1.3.0.mcpb](https://github.com/Ker102/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb)
-   及其 [SHA-256 file](https://github.com/Ker102/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb.sha256)。
+2. 下载 [vipermesh-blender-1.3.0.mcpb](https://github.com/OpenRootdev/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb)
+   及其 [SHA-256 file](https://github.com/OpenRootdev/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb.sha256)。
 3. 按照该客户端的本地扩展说明，将 bundle 导入支持 MCPB 的客户端。bundle 的启动配置需要 Node.js。除非你的插件使用不同端口，否则保持桥接端口为 `9876`。
 4. 启动本地 Blender 桥接，然后从 AI 客户端调用 `bootstrap_vipermesh_session` 并检查连接结果。
 

@@ -47,6 +47,6 @@ ViperMesh for Blender 的所有重要变更都记录在这里。
 - 为真正自定义的 Blender 工作提供明确的 `execute_code` 回退。
 - 仅限本地的 loopback 传输和公开发布验证。
 
-[未发布]: https://github.com/Ker102/vipermesh-blender/compare/v1.3.0...HEAD
-[1.3.0]: https://github.com/Ker102/vipermesh-blender/compare/v1.2.0...v1.3.0
-[1.2.0]: https://github.com/Ker102/vipermesh-blender/releases/tag/v1.2.0
+[未发布]: https://github.com/OpenRootdev/vipermesh-blender/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/OpenRootdev/vipermesh-blender/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/OpenRootdev/vipermesh-blender/releases/tag/v1.2.0

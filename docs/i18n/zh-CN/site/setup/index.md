@@ -1,7 +1,7 @@
 <a id="install-vipermesh-blender-mcp"></a>
 # 安装 ViperMesh Blender MCP
 
-Canonical page: https://ker102.github.io/vipermesh-blender/setup/
+Canonical page: https://openrootdev.github.io/vipermesh-blender/setup/
 
 
 
@@ -46,7 +46,7 @@ Node.js 20 或更新版本。
 
 从源码构建
 
-git clone https://github.com/Ker102/vipermesh-blender.git
+git clone https://github.com/OpenRootdev/vipermesh-blender.git
 cd vipermesh-blender
 npm install
 npm run build
@@ -102,6 +102,6 @@ npm run build
 
 报告设置问题 · 面向代理的文档 · Harness Library listing
 
-Client configuration: https://github.com/Ker102/vipermesh-blender/blob/main/docs/client-setup.md
-Bundle and checksums: https://github.com/Ker102/vipermesh-blender/blob/main/docs/mcp-distribution.md
-Security: https://github.com/Ker102/vipermesh-blender/blob/main/SECURITY.md
+Client configuration: https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/client-setup.md
+Bundle and checksums: https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/mcp-distribution.md
+Security: https://github.com/OpenRootdev/vipermesh-blender/blob/main/SECURITY.md

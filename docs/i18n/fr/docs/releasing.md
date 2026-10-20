@@ -8,8 +8,8 @@ jamais l'historique du dépôt privé.
 <a id="current-release"></a>
 ## Version actuelle
 
-- Dépôt : https://github.com/Ker102/vipermesh-blender
-- Cible de version : https://github.com/Ker102/vipermesh-blender/releases/tag/v1.3.0
+- Dépôt : https://github.com/OpenRootdev/vipermesh-blender
+- Cible de version : https://github.com/OpenRootdev/vipermesh-blender/releases/tag/v1.3.0
 - Cible de version source : `v1.3.0`
 - Cible de compatibilité Blender : 5.2
 - CI : typecheck autonome, tests de conformité, build, validation de package,

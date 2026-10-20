@@ -114,7 +114,7 @@ everyday scene operations more token-efficient, faster, simpler for assistants
 to use and easier to validate. This is not a claim that it wins every task or
 that the public connector includes every feature of ViperMesh Studio.
 
-[Website installation guide](https://openrootdev.github.io/vipermesh-blender/setup/) · [Harness Library listing](https://kaelux-labs.github.io/harness-library/harnesses/vipermesh-blender/)
+[Website installation guide](https://openrootdev.github.io/vipermesh-blender/setup/) · [Harness Library listing](https://openrootdev.github.io/harness-library/harnesses/vipermesh-blender/)
 
 ## Requirements
 

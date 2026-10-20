@@ -25,7 +25,7 @@ stdio locais.
 Clone, instale e construa o repositório:
 
 ```bash
-git clone https://github.com/Ker102/vipermesh-blender.git
+git clone https://github.com/OpenRootdev/vipermesh-blender.git
 cd vipermesh-blender
 npm install
 npm run build

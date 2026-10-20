@@ -8,8 +8,8 @@ histórico do repositório privado.
 <a id="current-release"></a>
 ## Release Atual
 
-- Repositório: https://github.com/Ker102/vipermesh-blender
-- Alvo da release: https://github.com/Ker102/vipermesh-blender/releases/tag/v1.3.0
+- Repositório: https://github.com/OpenRootdev/vipermesh-blender
+- Alvo da release: https://github.com/OpenRootdev/vipermesh-blender/releases/tag/v1.3.0
 - Alvo da release de origem: `v1.3.0`
 - Alvo de compatibilidade do Blender: 5.2
 - CI: typecheck independente, testes de conformidade, build, validação de pacote,

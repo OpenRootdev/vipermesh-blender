@@ -4,13 +4,13 @@
 [English](../../../README.md) | [Español](../es/README.md) | [简体中文](../zh-CN/README.md) | [Français](../fr/README.md) | [日本語](../ja/README.md) | [Deutsch](../de/README.md) | [Português (Brasil)](../pt-BR/README.md)
 <!-- i18n:languages:end -->
 
-<a href="https://ker102.github.io/vipermesh-blender/"><img src="../../../site/assets/brand-mark.png" alt="ViperMesh のロゴ" width="104" height="104"></a>
+<a href="https://openrootdev.github.io/vipermesh-blender/"><img src="../../../site/assets/brand-mark.png" alt="ViperMesh のロゴ" width="104" height="104"></a>
 
 <h1>ViperMesh for Blender</h1>
 <p>AI エージェント向けの、オープンソースの Blender MCP サーバーとアドオン。</p>
 
-[![CI](https://github.com/Ker102/vipermesh-blender/actions/workflows/ci.yml/badge.svg)](https://github.com/Ker102/vipermesh-blender/actions/workflows/ci.yml)
-[![GitHub リリース](https://img.shields.io/github/v/release/Ker102/vipermesh-blender?display_name=tag)](https://github.com/Ker102/vipermesh-blender/releases)
+[![CI](https://github.com/OpenRootdev/vipermesh-blender/actions/workflows/ci.yml/badge.svg)](https://github.com/OpenRootdev/vipermesh-blender/actions/workflows/ci.yml)
+[![GitHub リリース](https://img.shields.io/github/v/release/Ker102/vipermesh-blender?display_name=tag)](https://github.com/OpenRootdev/vipermesh-blender/releases)
 [![ライセンス: MIT](https://img.shields.io/badge/license-MIT-green.svg)](../../../LICENSE)
 [![MCP](https://img.shields.io/badge/Model_Context_Protocol-server-1f6feb)](https://modelcontextprotocol.io/)
 
@@ -19,11 +19,11 @@
 シーン編集の高速化、AI トークンの削減、より十分に確認された結果を目指しています。
 
 <p>
-<a href="https://github.com/Ker102/vipermesh-blender/releases/latest"><img src="../../../site/assets/readme-download.svg" alt="Blender アドオンをダウンロード" width="240" height="44"></a>
+<a href="https://github.com/OpenRootdev/vipermesh-blender/releases/latest"><img src="../../../site/assets/readme-download.svg" alt="Blender アドオンをダウンロード" width="240" height="44"></a>
 <a href="docs/client-setup.md"><img src="../../../site/assets/readme-setup.svg" alt="設定ガイド" width="160" height="44"></a>
 </p>
 
-[プロジェクトの概要と設定](https://ker102.github.io/vipermesh-blender/)
+[プロジェクトの概要と設定](https://openrootdev.github.io/vipermesh-blender/)
 | [ViperMesh Studio のウェイティングリスト](https://vipermesh-studio.vercel.app/waitlist)
 
 </div>
@@ -38,9 +38,9 @@ ViperMesh for Blender は、対応する AI アシスタントが Blender のシ
 <a id="watch-the-overview"></a>
 ## 紹介動画を見る
 
-[![ViperMesh for Blender の紹介を見る](../../../site/assets/connector-overview-poster.png)](https://ker102.github.io/vipermesh-blender/#overview)
+[![ViperMesh for Blender の紹介を見る](../../../site/assets/connector-overview-poster.png)](https://openrootdev.github.io/vipermesh-blender/#overview)
 
-[72 秒の動画を見る](https://ker102.github.io/vipermesh-blender/#overview)、または [MP4 をダウンロード](https://ker102.github.io/vipermesh-blender/assets/connector-overview.mp4)できます。
+[72 秒の動画を見る](https://openrootdev.github.io/vipermesh-blender/#overview)、または [MP4 をダウンロード](https://openrootdev.github.io/vipermesh-blender/assets/connector-overview.mp4)できます。
 AI クライアントが用意された Blender 操作をどう使うか、生成するコードを減らすことがなぜ役立つか、始めるには何が必要かを紹介します。これは音声のない図解による紹介であり、時間計測付きのベンチマーク録画ではありません。GitHub の README から再生可能な動画にリンクしています。
 
 <a id="why-vipermesh-for-blender"></a>
@@ -95,7 +95,7 @@ ViperMesh は、現在 MCP for Blender という名称になっている [Siddha
 
 両プロジェクトとも、シーンを検査し、独自の Python を実行できます。元のプロジェクトには、アセットや生成機能との連携もあります。ViperMesh は、日常的なシーン操作でのトークン効率、速度、アシスタントの使いやすさ、検証のしやすさを目指しています。すべてのタスクで優れているという主張ではなく、公開コネクタに ViperMesh Studio の全機能が含まれるという意味でもありません。
 
-[ウェブサイトのインストールガイド](https://ker102.github.io/vipermesh-blender/setup/) · [Harness Library の掲載情報](https://kaelux-labs.github.io/harness-library/harnesses/vipermesh-blender/)
+[ウェブサイトのインストールガイド](https://openrootdev.github.io/vipermesh-blender/setup/) · [Harness Library の掲載情報](https://openrootdev.github.io/harness-library/harnesses/vipermesh-blender/)
 
 <a id="requirements"></a>
 ## 要件
@@ -112,7 +112,7 @@ MCP は Model Context Protocol の略であり、AI アシスタントが別の�
 <a id="1-install-the-blender-addon"></a>
 ### 1. Blender アドオンをインストールする
 
-[最新リリース](https://github.com/Ker102/vipermesh-blender/releases/latest)から、バージョン付きのアドオン `.py` またはアドオン `.zip` をダウンロードします。
+[最新リリース](https://github.com/OpenRootdev/vipermesh-blender/releases/latest)から、バージョン付きのアドオン `.py` またはアドオン `.zip` をダウンロードします。
 Blender で次の操作を行います。
 
 1. **Edit > Preferences > Add-ons** を開きます。
@@ -125,14 +125,14 @@ Blender で次の操作を行います。
 <a id="2-install-the-mcp-server"></a>
 ### 2. MCP サーバーをインストールする
 
-**パッケージを使う場合:** [`v1.3.0` の MCPB バンドル](https://github.com/Ker102/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb)をダウンロードし、ローカル MCPB 拡張機能に対応するクライアントへインポートします。Node サーバーと依存関係が含まれるため、リポジトリのクローンやビルドは不要です。Node.js と、別途有効にする Blender アドオンは引き続き必要です。
+**パッケージを使う場合:** [`v1.3.0` の MCPB バンドル](https://github.com/OpenRootdev/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb)をダウンロードし、ローカル MCPB 拡張機能に対応するクライアントへインポートします。Node サーバーと依存関係が含まれるため、リポジトリのクローンやビルドは不要です。Node.js と、別途有効にする Blender アドオンは引き続き必要です。
 
 コネクタは [Smithery](https://smithery.ai/servers/ker102/vipermesh-blender) と [公式 MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.Ker102/vipermesh-blender)にも掲載されています。これらが配布するのはローカルコネクタであり、ホストされた Blender サービスではありません。チェックサム、手動での展開方法、現在の検証上の制限については、[配布とバンドルの設定](docs/mcp-distribution.md)を参照してください。
 
 **ソースを使う場合:** npm パッケージが公開されるまでは、クローンしてビルドしてください。
 
 ```bash
-git clone https://github.com/Ker102/vipermesh-blender.git
+git clone https://github.com/OpenRootdev/vipermesh-blender.git
 cd vipermesh-blender
 npm install
 npm run build

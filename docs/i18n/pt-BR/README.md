@@ -4,13 +4,13 @@
 [English](../../../README.md) | [Español](../es/README.md) | [简体中文](../zh-CN/README.md) | [Français](../fr/README.md) | [日本語](../ja/README.md) | [Deutsch](../de/README.md) | [Português (Brasil)](../pt-BR/README.md)
 <!-- i18n:languages:end -->
 
-<a href="https://ker102.github.io/vipermesh-blender/"><img src="../../../site/assets/brand-mark.png" alt="Logo do ViperMesh" width="104" height="104"></a>
+<a href="https://openrootdev.github.io/vipermesh-blender/"><img src="../../../site/assets/brand-mark.png" alt="Logo do ViperMesh" width="104" height="104"></a>
 
 <h1>ViperMesh for Blender</h1>
 <p>Servidor MCP e addon open-source do Blender para agentes de IA.</p>
 
-[![CI](https://github.com/Ker102/vipermesh-blender/actions/workflows/ci.yml/badge.svg)](https://github.com/Ker102/vipermesh-blender/actions/workflows/ci.yml)
-[![GitHub release](https://img.shields.io/github/v/release/Ker102/vipermesh-blender?display_name=tag)](https://github.com/Ker102/vipermesh-blender/releases)
+[![CI](https://github.com/OpenRootdev/vipermesh-blender/actions/workflows/ci.yml/badge.svg)](https://github.com/OpenRootdev/vipermesh-blender/actions/workflows/ci.yml)
+[![GitHub release](https://img.shields.io/github/v/release/Ker102/vipermesh-blender?display_name=tag)](https://github.com/OpenRootdev/vipermesh-blender/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](../../../LICENSE)
 [![MCP](https://img.shields.io/badge/Model_Context_Protocol-server-1f6feb)](https://modelcontextprotocol.io/)
 
@@ -20,11 +20,11 @@ Projetado para edições de cena mais rápidas, menos tokens de IA e resultados
 melhor verificados.
 
 <p>
-<a href="https://github.com/Ker102/vipermesh-blender/releases/latest"><img src="../../../site/assets/readme-download.svg" alt="Baixar addon do Blender" width="240" height="44"></a>
+<a href="https://github.com/OpenRootdev/vipermesh-blender/releases/latest"><img src="../../../site/assets/readme-download.svg" alt="Baixar addon do Blender" width="240" height="44"></a>
 <a href="docs/client-setup.md"><img src="../../../site/assets/readme-setup.svg" alt="Guia de configuração" width="160" height="44"></a>
 </p>
 
-[Visão geral e configuração do projeto](https://ker102.github.io/vipermesh-blender/)
+[Visão geral e configuração do projeto](https://openrootdev.github.io/vipermesh-blender/)
 | [Lista de espera do ViperMesh Studio](https://vipermesh-studio.vercel.app/waitlist)
 
 </div>
@@ -45,10 +45,10 @@ assistente ajude.
 <a id="watch-the-overview"></a>
 ## Assista À Visão Geral
 
-[![Assista à visão geral do ViperMesh for Blender](../../../site/assets/connector-overview-poster.png)](https://ker102.github.io/vipermesh-blender/#overview)
+[![Assista à visão geral do ViperMesh for Blender](../../../site/assets/connector-overview-poster.png)](https://openrootdev.github.io/vipermesh-blender/#overview)
 
-[Assista ao vídeo de 72 segundos](https://ker102.github.io/vipermesh-blender/#overview)
-ou [baixe o MP4](https://ker102.github.io/vipermesh-blender/assets/connector-overview.mp4).
+[Assista ao vídeo de 72 segundos](https://openrootdev.github.io/vipermesh-blender/#overview)
+ou [baixe o MP4](https://openrootdev.github.io/vipermesh-blender/assets/connector-overview.mp4).
 Veja como seu cliente de IA usa ações prontas do Blender, por que menos código
 gerado pode ajudar e como começar. Esta é uma visão geral ilustrada e silenciosa,
 não uma gravação cronometrada de benchmark. Os links do README no GitHub apontam
@@ -124,7 +124,7 @@ rápidas, mais simples para assistentes usarem e mais fáceis de validar. Esta n
 é uma alegação de que ele vence toda tarefa ou de que o conector público inclui
 todos os recursos do ViperMesh Studio.
 
-[Guia de instalação do site](https://ker102.github.io/vipermesh-blender/setup/) · [Listagem da Harness Library](https://kaelux-labs.github.io/harness-library/harnesses/vipermesh-blender/)
+[Guia de instalação do site](https://openrootdev.github.io/vipermesh-blender/setup/) · [Listagem da Harness Library](https://openrootdev.github.io/harness-library/harnesses/vipermesh-blender/)
 
 <a id="requirements"></a>
 ## Requisitos
@@ -145,7 +145,7 @@ modelo de IA ao Blender.
 ### 1. Instale O Addon Do Blender
 
 Baixe o addon versionado `.py` ou o addon `.zip` da
-[release mais recente](https://github.com/Ker102/vipermesh-blender/releases/latest).
+[release mais recente](https://github.com/OpenRootdev/vipermesh-blender/releases/latest).
 No Blender:
 
 1. Abra **Edit > Preferences > Add-ons**.
@@ -160,7 +160,7 @@ Mantenha a ponte em execução pela sessão completa do agente.
 ### 2. Instale O Servidor MCP
 
 **Opção empacotada:** Baixe o
-[`v1.3.0` bundle MCPB](https://github.com/Ker102/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb)
+[`v1.3.0` bundle MCPB](https://github.com/OpenRootdev/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb)
 e importe-o para um cliente que ofereça suporte a extensões MCPB locais. Ele
 contém o servidor Node e suas dependências, então você não precisa clonar nem
 construir o repositório. Node.js e o addon do Blender habilitado separadamente
@@ -176,7 +176,7 @@ o checksum, opção de extração manual e limites atuais de validação.
 **Opção de código-fonte:** Até que o pacote npm seja publicado, clone e construa:
 
 ```bash
-git clone https://github.com/Ker102/vipermesh-blender.git
+git clone https://github.com/OpenRootdev/vipermesh-blender.git
 cd vipermesh-blender
 npm install
 npm run build

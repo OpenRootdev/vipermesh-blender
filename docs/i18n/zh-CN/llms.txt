@@ -7,8 +7,8 @@
 > 现成的 Blender 操作会减少已覆盖任务中的生成代码，同时
 > 场景检查帮助助手检查并修复其工作。
 
-Canonical repository: https://github.com/Ker102/vipermesh-blender
-Project overview: https://ker102.github.io/vipermesh-blender/
+Canonical repository: https://github.com/OpenRootdev/vipermesh-blender
+Project overview: https://openrootdev.github.io/vipermesh-blender/
 License: MIT
 Runtime: Node.js 20+ and Blender
 Transport: MCP over stdio, then a loopback TCP bridge to Blender
@@ -16,15 +16,15 @@ Transport: MCP over stdio, then a loopback TCP bridge to Blender
 <a id="primary-documentation"></a>
 ## 主要文档
 
-- 安装和故障排查: https://ker102.github.io/vipermesh-blender/setup/index.md
-- 通俗语言概览: https://ker102.github.io/vipermesh-blender/index.md
+- 安装和故障排查: https://openrootdev.github.io/vipermesh-blender/setup/index.md
+- 通俗语言概览: https://openrootdev.github.io/vipermesh-blender/index.md
 
-- README: https://github.com/Ker102/vipermesh-blender#readme
-- 连接器手册: https://github.com/Ker102/vipermesh-blender/blob/main/docs/portable-blender-mcp.md
-- MCP 客户端设置: https://github.com/Ker102/vipermesh-blender/blob/main/docs/client-setup.md
-- 代理技能: https://github.com/Ker102/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md
-- 安全边界: https://github.com/Ker102/vipermesh-blender/blob/main/SECURITY.md
-- Releases: https://github.com/Ker102/vipermesh-blender/releases
+- README: https://github.com/OpenRootdev/vipermesh-blender#readme
+- 连接器手册: https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/portable-blender-mcp.md
+- MCP 客户端设置: https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/client-setup.md
+- 代理技能: https://github.com/OpenRootdev/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md
+- 安全边界: https://github.com/OpenRootdev/vipermesh-blender/blob/main/SECURITY.md
+- Releases: https://github.com/OpenRootdev/vipermesh-blender/releases
 
 <a id="key-facts"></a>
 ## 关键事实

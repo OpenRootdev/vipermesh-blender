@@ -1,7 +1,7 @@
 <a id="install-vipermesh-blender-mcp"></a>
 # ViperMesh Blender MCP のインストール
 
-正規ページ: https://ker102.github.io/vipermesh-blender/setup/
+正規ページ: https://openrootdev.github.io/vipermesh-blender/setup/
 
 ← ViperMesh の概要
 
@@ -35,7 +35,7 @@ MCPB のインポート機能がない場合は、バンドルを ZIP として�
 
 ソースからのビルド
 
-git clone https://github.com/Ker102/vipermesh-blender.git
+git clone https://github.com/OpenRootdev/vipermesh-blender.git
 cd vipermesh-blender
 npm install
 npm run build
@@ -81,6 +81,6 @@ Blender が起動していること、アドオンが有効であること、Sta
 
 設定の問題を報告 · エージェント向けドキュメント · Harness Library の掲載情報
 
-クライアントの設定: https://github.com/Ker102/vipermesh-blender/blob/main/docs/client-setup.md
-バンドルとチェックサム: https://github.com/Ker102/vipermesh-blender/blob/main/docs/mcp-distribution.md
-セキュリティ: https://github.com/Ker102/vipermesh-blender/blob/main/SECURITY.md
+クライアントの設定: https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/client-setup.md
+バンドルとチェックサム: https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/mcp-distribution.md
+セキュリティ: https://github.com/OpenRootdev/vipermesh-blender/blob/main/SECURITY.md

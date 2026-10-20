@@ -8,8 +8,8 @@ die private Repository-Historie.
 <a id="current-release"></a>
 ## Aktuelles Release
 
-- Repository: https://github.com/Ker102/vipermesh-blender
-- Release-Ziel: https://github.com/Ker102/vipermesh-blender/releases/tag/v1.3.0
+- Repository: https://github.com/OpenRootdev/vipermesh-blender
+- Release-Ziel: https://github.com/OpenRootdev/vipermesh-blender/releases/tag/v1.3.0
 - Source-Release-Ziel: `v1.3.0`
 - Blender-Kompatibilitätsziel: 5.2
 - CI: eigenständiger Typecheck, Konformitätstests, Build, Paketvalidierung, npm

@@ -25,7 +25,7 @@ Docker ist für Clients, die lokale stdio-MCP-Server unterstützen, nicht erford
 Repository klonen, installieren und bauen:
 
 ```bash
-git clone https://github.com/Ker102/vipermesh-blender.git
+git clone https://github.com/OpenRootdev/vipermesh-blender.git
 cd vipermesh-blender
 npm install
 npm run build

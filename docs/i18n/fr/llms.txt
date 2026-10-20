@@ -9,8 +9,8 @@
 > tandis que les vérifications de scène aident l'assistant à inspecter et
 > réparer son travail.
 
-Dépôt canonique : https://github.com/Ker102/vipermesh-blender
-Présentation du projet : https://ker102.github.io/vipermesh-blender/
+Dépôt canonique : https://github.com/OpenRootdev/vipermesh-blender
+Présentation du projet : https://openrootdev.github.io/vipermesh-blender/
 Licence : MIT
 Runtime : Node.js 20+ et Blender
 Transport : MCP sur stdio, puis pont TCP loopback vers Blender
@@ -18,15 +18,15 @@ Transport : MCP sur stdio, puis pont TCP loopback vers Blender
 <a id="primary-documentation"></a>
 ## Documentation principale
 
-- Installation et dépannage : https://ker102.github.io/vipermesh-blender/setup/index.md
-- Présentation en langage clair : https://ker102.github.io/vipermesh-blender/index.md
+- Installation et dépannage : https://openrootdev.github.io/vipermesh-blender/setup/index.md
+- Présentation en langage clair : https://openrootdev.github.io/vipermesh-blender/index.md
 
-- README : https://github.com/Ker102/vipermesh-blender#readme
-- Manuel du connecteur : https://github.com/Ker102/vipermesh-blender/blob/main/docs/portable-blender-mcp.md
-- Configuration client MCP : https://github.com/Ker102/vipermesh-blender/blob/main/docs/client-setup.md
-- Compétence d'agent : https://github.com/Ker102/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md
-- Limite de sécurité : https://github.com/Ker102/vipermesh-blender/blob/main/SECURITY.md
-- Versions : https://github.com/Ker102/vipermesh-blender/releases
+- README : https://github.com/OpenRootdev/vipermesh-blender#readme
+- Manuel du connecteur : https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/portable-blender-mcp.md
+- Configuration client MCP : https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/client-setup.md
+- Compétence d'agent : https://github.com/OpenRootdev/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md
+- Limite de sécurité : https://github.com/OpenRootdev/vipermesh-blender/blob/main/SECURITY.md
+- Versions : https://github.com/OpenRootdev/vipermesh-blender/releases
 
 <a id="key-facts"></a>
 ## Faits essentiels

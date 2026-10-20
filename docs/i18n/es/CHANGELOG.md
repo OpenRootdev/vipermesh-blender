@@ -58,6 +58,6 @@ Todos los cambios destacables de ViperMesh for Blender se documentan aquí.
 - Fallback explícito `execute_code` para trabajo de Blender genuinamente personalizado.
 - Transporte local-only por loopback y validación de release pública.
 
-[Sin publicar]: https://github.com/Ker102/vipermesh-blender/compare/v1.3.0...HEAD
-[1.3.0]: https://github.com/Ker102/vipermesh-blender/compare/v1.2.0...v1.3.0
-[1.2.0]: https://github.com/Ker102/vipermesh-blender/releases/tag/v1.2.0
+[Sin publicar]: https://github.com/OpenRootdev/vipermesh-blender/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/OpenRootdev/vipermesh-blender/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/OpenRootdev/vipermesh-blender/releases/tag/v1.2.0

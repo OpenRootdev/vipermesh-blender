@@ -19,7 +19,7 @@ MCP 客户端负责服务器生命周期。只需在客户端中注册服务器�
 克隆、安装并构建仓库：
 
 ```bash
-git clone https://github.com/Ker102/vipermesh-blender.git
+git clone https://github.com/OpenRootdev/vipermesh-blender.git
 cd vipermesh-blender
 npm install
 npm run build

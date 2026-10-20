@@ -7,8 +7,8 @@
 > Las acciones de Blender listas para usar reducen el código generado para tareas cubiertas, mientras que
 > las comprobaciones de escena ayudan al asistente a inspeccionar y reparar su trabajo.
 
-Repositorio canónico: https://github.com/Ker102/vipermesh-blender
-Descripción general del proyecto: https://ker102.github.io/vipermesh-blender/
+Repositorio canónico: https://github.com/OpenRootdev/vipermesh-blender
+Descripción general del proyecto: https://openrootdev.github.io/vipermesh-blender/
 Licencia: MIT
 Runtime: Node.js 20+ y Blender
 Transporte: MCP por stdio, luego un puente TCP loopback a Blender
@@ -16,15 +16,15 @@ Transporte: MCP por stdio, luego un puente TCP loopback a Blender
 <a id="primary-documentation"></a>
 ## Documentación principal
 
-- Instalación y solución de problemas: https://ker102.github.io/vipermesh-blender/setup/index.md
-- Descripción general en lenguaje claro: https://ker102.github.io/vipermesh-blender/index.md
+- Instalación y solución de problemas: https://openrootdev.github.io/vipermesh-blender/setup/index.md
+- Descripción general en lenguaje claro: https://openrootdev.github.io/vipermesh-blender/index.md
 
-- README: https://github.com/Ker102/vipermesh-blender#readme
-- Manual del conector: https://github.com/Ker102/vipermesh-blender/blob/main/docs/portable-blender-mcp.md
-- Configuración de cliente MCP: https://github.com/Ker102/vipermesh-blender/blob/main/docs/client-setup.md
-- Skill de agente: https://github.com/Ker102/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md
-- Límite de seguridad: https://github.com/Ker102/vipermesh-blender/blob/main/SECURITY.md
-- Releases: https://github.com/Ker102/vipermesh-blender/releases
+- README: https://github.com/OpenRootdev/vipermesh-blender#readme
+- Manual del conector: https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/portable-blender-mcp.md
+- Configuración de cliente MCP: https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/client-setup.md
+- Skill de agente: https://github.com/OpenRootdev/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md
+- Límite de seguridad: https://github.com/OpenRootdev/vipermesh-blender/blob/main/SECURITY.md
+- Releases: https://github.com/OpenRootdev/vipermesh-blender/releases
 
 <a id="key-facts"></a>
 ## Datos clave

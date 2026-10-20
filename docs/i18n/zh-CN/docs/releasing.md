@@ -7,8 +7,8 @@
 <a id="current-release"></a>
 ## 当前发布
 
-- Repository: https://github.com/Ker102/vipermesh-blender
-- Release target: https://github.com/Ker102/vipermesh-blender/releases/tag/v1.3.0
+- Repository: https://github.com/OpenRootdev/vipermesh-blender
+- Release target: https://github.com/OpenRootdev/vipermesh-blender/releases/tag/v1.3.0
 - Source release target: `v1.3.0`
 - Blender compatibility target: 5.2
 - CI: standalone typecheck、一致性测试、构建、包验证、npm audit 和插件 Python 编译

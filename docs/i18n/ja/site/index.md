@@ -3,8 +3,8 @@
 
 > Blender のシーン編集、検査、再利用可能な 3D 操作のための、無料でオープンソースのローカル AI 支援。
 
-正規ページ: https://ker102.github.io/vipermesh-blender/
-リポジトリ: https://github.com/Ker102/vipermesh-blender
+正規ページ: https://openrootdev.github.io/vipermesh-blender/
+リポジトリ: https://github.com/OpenRootdev/vipermesh-blender
 ライセンス: MIT。派生元の帰属表示は NOTICE.md に記載しています。
 
 ViperMesh は二つのローカル要素で動作します。対応する AI クライアントが、単一の持続的な Node MCP プロセスを stdio 経由で起動します。そのプロセスは、直列化されたループバック TCP ブリッジで Blender アドオンに接続します。既定の接続先は 127.0.0.1:9876 です。
@@ -20,11 +20,11 @@ ViperMesh は二つのローカル要素で動作します。対応する AI ク
 
 現在テスト対象となっているリリースは Blender 5.2 です。Node.js 20+ と、ローカル stdio MCP を扱えるクライアントが必要です。別途 Blender アドオンを有効にし、ローカルブリッジを起動してください。対応クライアントに MCPB バンドルをインポートするか、ソースをビルドして生成されたエントリーポイントを登録します。セッション中は同じプロセスを動かし続けてください。
 
-- [インストールとトラブルシューティング](https://ker102.github.io/vipermesh-blender/setup/index.md)
-- [クライアントの設定](https://github.com/Ker102/vipermesh-blender/blob/main/docs/client-setup.md)
-- [リリースバンドル](https://github.com/Ker102/vipermesh-blender/releases)
-- [コネクタのマニュアル](https://github.com/Ker102/vipermesh-blender/blob/main/docs/portable-blender-mcp.md)
-- [エージェントスキル](https://github.com/Ker102/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md)
-- [セキュリティの境界](https://github.com/Ker102/vipermesh-blender/blob/main/SECURITY.md)
-- [図解による紹介](https://ker102.github.io/vipermesh-blender/#overview)
-- [Harness Library](https://kaelux-labs.github.io/harness-library/harnesses/vipermesh-blender/)
+- [インストールとトラブルシューティング](https://openrootdev.github.io/vipermesh-blender/setup/index.md)
+- [クライアントの設定](https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/client-setup.md)
+- [リリースバンドル](https://github.com/OpenRootdev/vipermesh-blender/releases)
+- [コネクタのマニュアル](https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/portable-blender-mcp.md)
+- [エージェントスキル](https://github.com/OpenRootdev/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md)
+- [セキュリティの境界](https://github.com/OpenRootdev/vipermesh-blender/blob/main/SECURITY.md)
+- [図解による紹介](https://openrootdev.github.io/vipermesh-blender/#overview)
+- [Harness Library](https://openrootdev.github.io/harness-library/harnesses/vipermesh-blender/)

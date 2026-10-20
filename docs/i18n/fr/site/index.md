@@ -3,8 +3,8 @@
 
 > Assistance IA locale, gratuite et open source pour l'édition, l'inspection et les opérations 3D réutilisables dans les scènes Blender.
 
-Page canonique : https://ker102.github.io/vipermesh-blender/
-Dépôt : https://github.com/Ker102/vipermesh-blender
+Page canonique : https://openrootdev.github.io/vipermesh-blender/
+Dépôt : https://github.com/OpenRootdev/vipermesh-blender
 Licence : MIT, avec attribution amont dans NOTICE.md.
 
 ViperMesh utilise deux composants locaux. Un client IA compatible lance un
@@ -38,11 +38,11 @@ Blender séparé et démarrez le pont local. Importez le bundle MCPB dans un cli
 pris en charge, ou construisez la source et enregistrez le point d'entrée
 construit. Gardez un seul processus actif pendant la session.
 
-- [Installation et dépannage](https://ker102.github.io/vipermesh-blender/setup/index.md)
-- [Configuration client](https://github.com/Ker102/vipermesh-blender/blob/main/docs/client-setup.md)
-- [Bundles de version](https://github.com/Ker102/vipermesh-blender/releases)
-- [Manuel du connecteur](https://github.com/Ker102/vipermesh-blender/blob/main/docs/portable-blender-mcp.md)
-- [Compétence d'agent](https://github.com/Ker102/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md)
-- [Limite de sécurité](https://github.com/Ker102/vipermesh-blender/blob/main/SECURITY.md)
-- [Présentation illustrée](https://ker102.github.io/vipermesh-blender/#overview)
-- [Harness Library](https://kaelux-labs.github.io/harness-library/harnesses/vipermesh-blender/)
+- [Installation et dépannage](https://openrootdev.github.io/vipermesh-blender/setup/index.md)
+- [Configuration client](https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/client-setup.md)
+- [Bundles de version](https://github.com/OpenRootdev/vipermesh-blender/releases)
+- [Manuel du connecteur](https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/portable-blender-mcp.md)
+- [Compétence d'agent](https://github.com/OpenRootdev/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md)
+- [Limite de sécurité](https://github.com/OpenRootdev/vipermesh-blender/blob/main/SECURITY.md)
+- [Présentation illustrée](https://openrootdev.github.io/vipermesh-blender/#overview)
+- [Harness Library](https://openrootdev.github.io/harness-library/harnesses/vipermesh-blender/)

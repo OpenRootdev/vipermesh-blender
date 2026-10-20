@@ -4,13 +4,13 @@
 [English](../../../README.md) | [Español](../es/README.md) | [简体中文](../zh-CN/README.md) | [Français](../fr/README.md) | [日本語](../ja/README.md) | [Deutsch](../de/README.md) | [Português (Brasil)](../pt-BR/README.md)
 <!-- i18n:languages:end -->
 
-<a href="https://ker102.github.io/vipermesh-blender/"><img src="../../../site/assets/brand-mark.png" alt="ViperMesh 标志" width="104" height="104"></a>
+<a href="https://openrootdev.github.io/vipermesh-blender/"><img src="../../../site/assets/brand-mark.png" alt="ViperMesh 标志" width="104" height="104"></a>
 
 <h1>ViperMesh for Blender</h1>
 <p>面向 AI 代理的开源 Blender MCP 服务器和插件。</p>
 
-[![CI](https://github.com/Ker102/vipermesh-blender/actions/workflows/ci.yml/badge.svg)](https://github.com/Ker102/vipermesh-blender/actions/workflows/ci.yml)
-[![GitHub release](https://img.shields.io/github/v/release/Ker102/vipermesh-blender?display_name=tag)](https://github.com/Ker102/vipermesh-blender/releases)
+[![CI](https://github.com/OpenRootdev/vipermesh-blender/actions/workflows/ci.yml/badge.svg)](https://github.com/OpenRootdev/vipermesh-blender/actions/workflows/ci.yml)
+[![GitHub release](https://img.shields.io/github/v/release/Ker102/vipermesh-blender?display_name=tag)](https://github.com/OpenRootdev/vipermesh-blender/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](../../../LICENSE)
 [![MCP](https://img.shields.io/badge/Model_Context_Protocol-server-1f6feb)](https://modelcontextprotocol.io/)
 
@@ -19,11 +19,11 @@
 为更快的场景编辑、更少的 AI token 和更充分检查的结果而设计。
 
 <p>
-<a href="https://github.com/Ker102/vipermesh-blender/releases/latest"><img src="../../../site/assets/readme-download.svg" alt="下载 Blender 插件" width="240" height="44"></a>
+<a href="https://github.com/OpenRootdev/vipermesh-blender/releases/latest"><img src="../../../site/assets/readme-download.svg" alt="下载 Blender 插件" width="240" height="44"></a>
 <a href="docs/client-setup.md"><img src="../../../site/assets/readme-setup.svg" alt="设置指南" width="160" height="44"></a>
 </p>
 
-[项目概览和设置](https://ker102.github.io/vipermesh-blender/)
+[项目概览和设置](https://openrootdev.github.io/vipermesh-blender/)
 | [ViperMesh Studio waitlist](https://vipermesh-studio.vercel.app/waitlist)
 
 </div>
@@ -38,10 +38,10 @@ ViperMesh for Blender 是一个免费的开源 **Blender MCP server and addon**�
 <a id="watch-the-overview"></a>
 ## 观看概览
 
-[![观看 ViperMesh for Blender 概览](../../../site/assets/connector-overview-poster.png)](https://ker102.github.io/vipermesh-blender/#overview)
+[![观看 ViperMesh for Blender 概览](../../../site/assets/connector-overview-poster.png)](https://openrootdev.github.io/vipermesh-blender/#overview)
 
-[观看 72 秒视频](https://ker102.github.io/vipermesh-blender/#overview)
-或[下载 MP4](https://ker102.github.io/vipermesh-blender/assets/connector-overview.mp4)。
+[观看 72 秒视频](https://openrootdev.github.io/vipermesh-blender/#overview)
+或[下载 MP4](https://openrootdev.github.io/vipermesh-blender/assets/connector-overview.mp4)。
 了解你的 AI 客户端如何使用现成的 Blender 操作、为什么更少的生成代码会有帮助，以及如何开始。这是一段无声图示概览，不是计时基准录制。GitHub 的 README 会链接到可播放视频。
 
 <a id="why-vipermesh-for-blender"></a>
@@ -96,7 +96,7 @@ ViperMesh 基于 Siddharth Ahuja 的原始 [BlenderMCP project](https://github.c
 
 两个项目都可以检查场景并运行自定义 Python。原始项目也提供资产和生成集成。ViperMesh 的目标是让日常场景操作更节省 token、更快、更便于助手使用且更易验证。这并不是声称它在每个任务上都胜出，也不是声称公开连接器包含 ViperMesh Studio 的每项功能。
 
-[网站安装指南](https://ker102.github.io/vipermesh-blender/setup/) · [Harness Library listing](https://kaelux-labs.github.io/harness-library/harnesses/vipermesh-blender/)
+[网站安装指南](https://openrootdev.github.io/vipermesh-blender/setup/) · [Harness Library listing](https://openrootdev.github.io/harness-library/harnesses/vipermesh-blender/)
 
 <a id="requirements"></a>
 ## 要求
@@ -113,7 +113,7 @@ MCP 是 Model Context Protocol 的缩写，是一种连接标准，可让 AI 助
 <a id="1-install-the-blender-addon"></a>
 ### 1. 安装 Blender 插件
 
-从 [latest release](https://github.com/Ker102/vipermesh-blender/releases/latest) 下载带版本号的插件 `.py` 或插件 `.zip`。在 Blender 中：
+从 [latest release](https://github.com/OpenRootdev/vipermesh-blender/releases/latest) 下载带版本号的插件 `.py` 或插件 `.zip`。在 Blender 中：
 
 1. 打开 **Edit > Preferences > Add-ons**。
 2. 选择 **Install from Disk**，并选择下载的 Python 文件。
@@ -126,7 +126,7 @@ MCP 是 Model Context Protocol 的缩写，是一种连接标准，可让 AI 助
 ### 2. 安装 MCP 服务器
 
 **打包选项：** 下载
-[`v1.3.0` MCPB bundle](https://github.com/Ker102/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb)
+[`v1.3.0` MCPB bundle](https://github.com/OpenRootdev/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb)
 并将其导入支持本地 MCPB 扩展的客户端。它包含 Node 服务器及其依赖，因此你不需要克隆或构建仓库。仍然需要 Node.js 和单独启用的 Blender 插件。
 
 该连接器也列在
@@ -137,7 +137,7 @@ MCP 是 Model Context Protocol 的缩写，是一种连接标准，可让 AI 助
 **源码选项：** 在 npm 包发布之前，请克隆并构建它：
 
 ```bash
-git clone https://github.com/Ker102/vipermesh-blender.git
+git clone https://github.com/OpenRootdev/vipermesh-blender.git
 cd vipermesh-blender
 npm install
 npm run build

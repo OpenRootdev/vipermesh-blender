@@ -6,8 +6,8 @@
 > 用意された Blender 操作は、対応するタスクで必要なコード生成を減らし、
 > シーン検査はアシスタントが作業を確認し、修正する助けになります。
 
-正規リポジトリ: https://github.com/Ker102/vipermesh-blender
-プロジェクトの概要: https://ker102.github.io/vipermesh-blender/
+正規リポジトリ: https://github.com/OpenRootdev/vipermesh-blender
+プロジェクトの概要: https://openrootdev.github.io/vipermesh-blender/
 ライセンス: MIT
 実行環境: Node.js 20+ と Blender
 通信: stdio 上の MCP と、Blender へのループバック TCP ブリッジ
@@ -15,15 +15,15 @@
 <a id="primary-documentation"></a>
 ## 主なドキュメント
 
-- インストールとトラブルシューティング: https://ker102.github.io/vipermesh-blender/setup/index.md
-- 分かりやすい概要: https://ker102.github.io/vipermesh-blender/index.md
+- インストールとトラブルシューティング: https://openrootdev.github.io/vipermesh-blender/setup/index.md
+- 分かりやすい概要: https://openrootdev.github.io/vipermesh-blender/index.md
 
-- README: https://github.com/Ker102/vipermesh-blender#readme
-- コネクタのマニュアル: https://github.com/Ker102/vipermesh-blender/blob/main/docs/portable-blender-mcp.md
-- MCP クライアントの設定: https://github.com/Ker102/vipermesh-blender/blob/main/docs/client-setup.md
-- エージェントスキル: https://github.com/Ker102/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md
-- セキュリティの境界: https://github.com/Ker102/vipermesh-blender/blob/main/SECURITY.md
-- リリース: https://github.com/Ker102/vipermesh-blender/releases
+- README: https://github.com/OpenRootdev/vipermesh-blender#readme
+- コネクタのマニュアル: https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/portable-blender-mcp.md
+- MCP クライアントの設定: https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/client-setup.md
+- エージェントスキル: https://github.com/OpenRootdev/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md
+- セキュリティの境界: https://github.com/OpenRootdev/vipermesh-blender/blob/main/SECURITY.md
+- リリース: https://github.com/OpenRootdev/vipermesh-blender/releases
 
 <a id="key-facts"></a>
 ## 主な事実

@@ -1,7 +1,7 @@
 <a id="install-vipermesh-blender-mcp"></a>
 # Installer ViperMesh Blender MCP
 
-Page canonique : https://ker102.github.io/vipermesh-blender/setup/
+Page canonique : https://openrootdev.github.io/vipermesh-blender/setup/
 
 
 
@@ -59,7 +59,7 @@ server/index.mjs. Suivez le guide du bundle et de la somme de contrôle.
 
 Construire depuis les sources
 
-git clone https://github.com/Ker102/vipermesh-blender.git
+git clone https://github.com/OpenRootdev/vipermesh-blender.git
 cd vipermesh-blender
 npm install
 npm run build
@@ -133,6 +133,6 @@ destructrices. Lisez la limite de sécurité.
 
 Signaler un problème de configuration · Documentation pour les agents · Liste Harness Library
 
-Configuration client : https://github.com/Ker102/vipermesh-blender/blob/main/docs/client-setup.md
-Bundle et sommes de contrôle : https://github.com/Ker102/vipermesh-blender/blob/main/docs/mcp-distribution.md
-Sécurité : https://github.com/Ker102/vipermesh-blender/blob/main/SECURITY.md
+Configuration client : https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/client-setup.md
+Bundle et sommes de contrôle : https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/mcp-distribution.md
+Sécurité : https://github.com/OpenRootdev/vipermesh-blender/blob/main/SECURITY.md

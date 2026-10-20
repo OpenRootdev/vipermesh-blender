@@ -8,7 +8,7 @@ ViperMesh for Blender は、ローカル stdio コネクタとして公開され
 
 - [Smithery: ker102/vipermesh-blender](https://smithery.ai/servers/ker102/vipermesh-blender)
 - [公式 MCP Registry: io.github.Ker102/vipermesh-blender](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.Ker102/vipermesh-blender)
-- [GitHub リリース v1.3.0](https://github.com/Ker102/vipermesh-blender/releases/tag/v1.3.0)
+- [GitHub リリース v1.3.0](https://github.com/OpenRootdev/vipermesh-blender/releases/tag/v1.3.0)
 
 公式レジストリがホストするのはメタデータです。MCPB パッケージは GitHub のリリースでホストされています。Smithery の掲載情報にも、同じバンドルと、パッケージ化されたサーバーから検出した九つの MCP ツールのスキーマが含まれています。
 
@@ -16,7 +16,7 @@ ViperMesh for Blender は、ローカル stdio コネクタとして公開され
 ## バンドルの設定
 
 1. [主なインストール手順](../README.md#install)に従って Blender アドオンをインストールし、有効にします。
-2. [vipermesh-blender-1.3.0.mcpb](https://github.com/Ker102/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb) と、その [SHA-256 ファイル](https://github.com/Ker102/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb.sha256) をダウンロードします。
+2. [vipermesh-blender-1.3.0.mcpb](https://github.com/OpenRootdev/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb) と、その [SHA-256 ファイル](https://github.com/OpenRootdev/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb.sha256) をダウンロードします。
 3. クライアントのローカル拡張機能の手順に従い、MCPB 対応クライアントにバンドルをインポートします。バンドルの起動設定には Node.js が必要です。アドオンが別のポートを使わない限り、ブリッジのポートは `9876` のままにしてください。
 4. Blender のローカルブリッジを起動し、AI クライアントから `bootstrap_vipermesh_session` を呼び出して接続結果を確認します。
 

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceLocale": "en",
-  "repository": "https://github.com/Ker102/vipermesh-blender",
+  "repository": "https://github.com/OpenRootdev/vipermesh-blender",
   "baseCommit": "fcdd0902813abb9dbb1f3e5aa394d72f2159f115",
   "sourceHashAlgorithm": "sha256-utf8-lf",
   "mirrorPattern": "docs/i18n/<locale>/<repo-relative-source>",
@@ -48,7 +48,7 @@
   "sources": [
     {
       "path": "README.md",
-      "sha256": "4b075923b439c7772061ebcd3f651c1363842d78f9adbc4c8dc0514579c09ada",
+      "sha256": "6939a6f16d3477dc3bc9bd0b86bdbb7a9a14d5fe4f941a85ce135e857d0eae1f",
       "completedLocales": [
         "es",
         "zh-CN",
@@ -108,7 +108,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "fd498ca323359356a0b1db7dcf5e08f5b073f40bb49986e64e874bc1e2bc2e33",
+      "sha256": "cbd0523c408969b0299e7407ba7c37cc6557510fff9c59b28bb6143dfadc063e",
       "completedLocales": [
         "es",
         "zh-CN",
@@ -120,7 +120,7 @@
     },
     {
       "path": "docs/client-setup.md",
-      "sha256": "c45a41e3872caa4db6a28d1e327feae989abef39462ffa9ede2005dc6646e84a",
+      "sha256": "6cef5ead369d9a4abb90b02bda749b0f6c0f2ef9f65f8a153be6054fb95c05e9",
       "completedLocales": [
         "es",
         "zh-CN",
@@ -132,7 +132,7 @@
     },
     {
       "path": "docs/mcp-distribution.md",
-      "sha256": "dbb17a0bc4015f301854dc2ecf3cd587b2b867a5e65b2e0c671bc468c4b977c4",
+      "sha256": "1b577ad93735f2278e10c1f07ace1a7939a131e417a3a432564386dc8c0769e4",
       "completedLocales": [
         "es",
         "zh-CN",
@@ -156,7 +156,7 @@
     },
     {
       "path": "docs/releasing.md",
-      "sha256": "acc6fd091082bd3d44ec152884615bc0942ce39f32f2e351121cd7b94969cbf9",
+      "sha256": "5673134c8b181924c5da80f8ee5fcc2fa6cb1efb1bc1d24540e2625002845e90",
       "completedLocales": [
         "es",
         "zh-CN",
@@ -240,7 +240,7 @@
     },
     {
       "path": "site/index.md",
-      "sha256": "e7fcea3971b777809e3681d6028bdb4baec57d6d7350f518ca50a054a515afa5",
+      "sha256": "552aa0f6c82d0f838c967d1e7a34a7b2fb06f537507bc270a8496c01c9613640",
       "completedLocales": [
         "es",
         "zh-CN",
@@ -252,7 +252,7 @@
     },
     {
       "path": "site/setup/index.md",
-      "sha256": "701a6887a165a1c683ca2e2df649a79ad011c0c59288a38e49364cf8f3599d8d",
+      "sha256": "9b9180e0281c02679a4eccc1cd64d936252db08fc42899427c4ab1aa582769f2",
       "completedLocales": [
         "es",
         "zh-CN",
@@ -264,7 +264,7 @@
     },
     {
       "path": "llms.txt",
-      "sha256": "4db5c25b73ee9044c59d56cb6ee0998047c5d357ed38c2481cdfdbf8017ec568",
+      "sha256": "8784d25cc92191b53ba1198b4635c82579089cad22d1aaa8ee87cbe7e702cc5c",
       "completedLocales": [
         "es",
         "zh-CN",
@@ -276,7 +276,7 @@
     },
     {
       "path": "site/llms.txt",
-      "sha256": "4db5c25b73ee9044c59d56cb6ee0998047c5d357ed38c2481cdfdbf8017ec568",
+      "sha256": "8784d25cc92191b53ba1198b4635c82579089cad22d1aaa8ee87cbe7e702cc5c",
       "completedLocales": [
         "es",
         "zh-CN",
