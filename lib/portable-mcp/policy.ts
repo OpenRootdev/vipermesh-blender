@@ -1,5 +1,6 @@
 import { TOOL_REGISTRY } from "../orchestration/tool-registry"
 import type { ToolMetadata } from "../blender/tool-metadata"
+import { getBlenderToolInputSchema } from "../blender/tool-input-schema"
 
 export const MAX_PORTABLE_COMMAND_PAYLOAD_BYTES = 256 * 1024
 export const MAX_PORTABLE_BATCH_COMMANDS = 32
@@ -8,8 +9,10 @@ const portableTools = TOOL_REGISTRY
 
 const portableToolNames = new Set(portableTools.map((tool) => tool.name))
 
-export function listPortableBlenderTools(): ToolMetadata[] {
-  return portableTools.map((tool) => ({ ...tool }))
+export function listPortableBlenderTools(includeSchemas = false): ToolMetadata[] {
+  return portableTools.map((tool) => ({ ...tool,
+    ...(includeSchemas ? { inputSchema: getBlenderToolInputSchema(tool.name) } : {}),
+  }))
 }
 
 export function isPortableBlenderToolAllowed(name: string): boolean {

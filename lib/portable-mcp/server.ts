@@ -127,10 +127,11 @@ export function createPortableBlenderMcpServer(service: PortableMcpService) {
     {
       title: "List Blender Tools",
       description:
-        "List Blender commands available through the trusted local portable gateway, including execute_code for fallback measurement.",
+        "Discover relevant Blender actions. Set includeSchemas=true with a focused query/category to retrieve JSON argument schemas; ordinary lists remain compact. execute_code stays available.",
       inputSchema: z.object({
         category: z.string().trim().min(1).max(64).optional(),
         query: z.string().trim().min(1).max(256).optional(),
+        includeSchemas: z.boolean().optional(),
       }),
     },
     async (input) => {

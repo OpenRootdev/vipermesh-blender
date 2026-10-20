@@ -27,4 +27,5 @@ jobs:
           node --test tests/i18n-validator.test.mjs
           node scripts/validate-i18n.mjs
       - run: npm run check
+      - run: npm run schemas:check
       - run: python -m py_compile addon/vipermesh-addon.py

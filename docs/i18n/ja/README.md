@@ -273,3 +273,5 @@ python -m py_compile addon/vipermesh-addon.py
 ## ライセンスと帰属表示
 
 ViperMesh for Blender は [MIT ライセンス](../../../LICENSE)で公開されています。Siddharth Ahuja の [BlenderMCP](https://github.com/ahujasid/mcp-for-blender) から派生した成果が含まれます。帰属表示と商標については、[NOTICE.md](NOTICE.md)を参照してください。
+
+開発者向けプレビュー：ヘッドレス動作、アクションのスキーマ、カタログ更新については[ランタイムリファレンス](../../../docs/runtime-operations.md)をご覧ください（英語のみ・未リリース）。

@@ -28,14 +28,17 @@
     "automation"
   ],
   "bin": {
-    "vipermesh-blender": "./dist/public-portable-blender-mcp.js"
+    "vipermesh-blender": "./dist/public-portable-blender-mcp.js",
+    "vipermesh-assets": "./dist/maintenance/build-local-asset-catalog.js"
   },
-  "files": ["addon", "dist", "docs", "skills", "README.md", "LICENSE"],
+  "files": ["addon/vipermesh-addon.py", "dist", "docs", "skills", "README.md", "LICENSE", "NOTICE.md", "SECURITY.md", "CHANGELOG.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md"],
   "scripts": {
     "mcp": "tsx scripts/public-portable-blender-mcp.ts",
-    "build": "tsup scripts/public-portable-blender-mcp.ts --format esm --platform node --out-dir dist --clean",
+    "build": "tsup scripts/public-portable-blender-mcp.ts scripts/maintenance/build-local-asset-catalog.ts --format esm --platform node --out-dir dist --clean",
     "typecheck": "tsc --noEmit",
-    "test": "tsx tests/conformance.ts",
+    "test": "tsx tests/conformance.ts && tsx scripts/test/test-blender-input-schemas.ts && tsx scripts/test/test-blender-tcp-client.ts && tsx scripts/test/test-local-asset-catalog-builder.ts",
+    "assets:catalog": "tsx scripts/maintenance/build-local-asset-catalog.ts",
+    "schemas:check": "python scripts/maintenance/generate-blender-tool-schemas.py --check",
     "audit": "npm audit --audit-level=moderate",
     "check": "npm run typecheck && npm test && npm run build && node scripts/validate-package.mjs && npm run audit",
     "prepublishOnly": "npm run check"

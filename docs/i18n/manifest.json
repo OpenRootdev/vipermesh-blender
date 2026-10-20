@@ -48,7 +48,7 @@
   "sources": [
     {
       "path": "README.md",
-      "sha256": "6939a6f16d3477dc3bc9bd0b86bdbb7a9a14d5fe4f941a85ce135e857d0eae1f",
+      "sha256": "3a55fc3cb362928f5f63a5efa2b63553a0dbc028e724fcda1ae265ec6a09f93a",
       "completedLocales": [
         "es",
         "zh-CN",
@@ -535,6 +535,10 @@
     {
       "path": "tsconfig.json",
       "reason": "Software implementation, executable script/test, lockfile, or build configuration; no behavior changes."
+    },
+    {
+      "path": "docs/runtime-operations.md",
+      "reason": "English-only normative developer reference for the unreleased runtime candidate; explicitly not claimed translated."
     }
   ],
   "excludedTrees": [

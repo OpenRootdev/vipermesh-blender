@@ -1,0 +1,5764 @@
+{
+  "schemaVersion": 1,
+  "signatureSha256": "5b570216928a71ebdf760c7e86a48c5deccce5ce10e8da451630663f88dbc9ff",
+  "tools": {
+    "add_camera": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rotation": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lens": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sensor_width": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "add_curve_object": {
+      "type": "object",
+      "properties": {
+        "curve_type": {
+          "type": "string"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "points": {
+          "anyOf": [
+            {
+              "description": "JSON value; operation-specific shape is validated by Blender.",
+              "x-blender-validation": "runtime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cyclic": {
+          "type": "boolean"
+        },
+        "resolution": {
+          "type": "number"
+        },
+        "radius": {
+          "type": "number"
+        },
+        "turns": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        },
+        "start_radius": {
+          "type": "number"
+        },
+        "end_radius": {
+          "type": "number"
+        },
+        "points_per_turn": {
+          "type": "number"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rotation": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "bevel_depth": {
+          "type": "number"
+        },
+        "bevel_resolution": {
+          "type": "integer"
+        },
+        "fill_mode": {
+          "type": "string"
+        },
+        "material_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "collection_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "convert_to_mesh": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "add_empty_object": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rotation": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "display_type": {
+          "type": "string"
+        },
+        "display_size": {
+          "type": "number"
+        },
+        "collection_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "parent_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replace_existing": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "add_light": {
+      "type": "object",
+      "properties": {
+        "light_type": {
+          "type": "string",
+          "examples": [
+            "POINT",
+            "SUN",
+            "SPOT",
+            "AREA"
+          ],
+          "description": "Preferred values shown as examples; Blender validates normalized values and aliases.",
+          "x-blender-validation": "runtime"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "energy": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "color": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 4
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "add_mesh_primitive": {
+      "type": "object",
+      "properties": {
+        "primitive_type": {
+          "type": "string"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rotation": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "size": {
+          "type": "number"
+        },
+        "radius": {
+          "type": "number"
+        },
+        "radius1": {
+          "type": "number"
+        },
+        "radius2": {
+          "type": "number"
+        },
+        "depth": {
+          "type": "number"
+        },
+        "vertices": {
+          "type": "number"
+        },
+        "segments": {
+          "type": "number"
+        },
+        "ring_count": {
+          "type": "number"
+        },
+        "major_radius": {
+          "type": "number"
+        },
+        "minor_radius": {
+          "type": "number"
+        },
+        "major_segments": {
+          "type": "number"
+        },
+        "minor_segments": {
+          "type": "number"
+        },
+        "collection_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "material_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "shade_smooth": {
+          "type": "boolean"
+        },
+        "validate": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "primitive_type"
+      ],
+      "additionalProperties": false
+    },
+    "add_modifier": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "modifier_type": {
+          "type": "string"
+        },
+        "modifier_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "properties": {
+          "anyOf": [
+            {
+              "description": "JSON value; operation-specific shape is validated by Blender.",
+              "x-blender-validation": "runtime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "modifier_type"
+      ],
+      "additionalProperties": false
+    },
+    "add_object_constraint": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "constraint_type": {
+          "type": "string"
+        },
+        "constraint_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "subtarget": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "influence": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "properties": {
+          "anyOf": [
+            {
+              "description": "JSON value; operation-specific shape is validated by Blender.",
+              "x-blender-validation": "runtime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "constraint_type"
+      ],
+      "additionalProperties": false
+    },
+    "add_text_object": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rotation": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "size": {
+          "type": "number"
+        },
+        "align_x": {
+          "type": "string"
+        },
+        "align_y": {
+          "type": "string"
+        },
+        "extrude": {
+          "type": "number"
+        },
+        "bevel_depth": {
+          "type": "number"
+        },
+        "bevel_resolution": {
+          "type": "integer"
+        },
+        "font_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "material_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "collection_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "convert_to_mesh": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "aim_camera_at": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "target_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target_location": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "set_active": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "set_dof_focus": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "align_object_attachment_points": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "obj_local_point": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "reference_name": {
+          "type": "string"
+        },
+        "reference_local_point": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "offset": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "preserve_rotation": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "obj_local_point",
+        "reference_name",
+        "reference_local_point"
+      ],
+      "additionalProperties": false
+    },
+    "align_object_to_surface": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "placement": {
+          "type": "string",
+          "examples": [
+            "GROUND",
+            "ON_TOP",
+            "SIDE_POSITIVE",
+            "SIDE_NEGATIVE"
+          ],
+          "description": "Preferred values shown as examples; Blender validates normalized values and aliases.",
+          "x-blender-validation": "runtime"
+        },
+        "reference_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "axis": {
+          "type": "string",
+          "examples": [
+            "X",
+            "Y",
+            "Z"
+          ],
+          "description": "Preferred values shown as examples; Blender validates normalized values and aliases.",
+          "x-blender-validation": "runtime"
+        },
+        "surface_value": {
+          "type": "number"
+        },
+        "margin": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "apply_modifier": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "modifier": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "modifier"
+      ],
+      "additionalProperties": false
+    },
+    "apply_transforms": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "location": {
+          "type": "boolean"
+        },
+        "rotation": {
+          "type": "boolean"
+        },
+        "scale": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "arrange_objects": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "layout": {
+          "type": "string"
+        },
+        "center": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "spacing": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "axis": {
+          "type": "string"
+        },
+        "radius": {
+          "type": "number"
+        },
+        "plane": {
+          "type": "string"
+        },
+        "columns": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "row_spacing": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "start_angle_degrees": {
+          "type": "number"
+        },
+        "align_bottom_to_z": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "names"
+      ],
+      "additionalProperties": false
+    },
+    "assign_material": {
+      "type": "object",
+      "properties": {
+        "object_name": {
+          "type": "string"
+        },
+        "material_name": {
+          "type": "string"
+        },
+        "slot_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "object_name",
+        "material_name"
+      ],
+      "additionalProperties": false
+    },
+    "bind_mesh_to_armature": {
+      "type": "object",
+      "properties": {
+        "mesh_name": {
+          "type": "string"
+        },
+        "armature_name": {
+          "type": "string"
+        },
+        "binding_mode": {
+          "type": "string"
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "keep_transform": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "mesh_name",
+        "armature_name"
+      ],
+      "additionalProperties": false
+    },
+    "compare_mesh_surfaces": {
+      "type": "object",
+      "properties": {
+        "source_name": {
+          "type": "string"
+        },
+        "candidate_name": {
+          "type": "string"
+        },
+        "distance_tolerance": {
+          "type": "number"
+        },
+        "seam_tolerance": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "max_surface_samples": {
+          "type": "number"
+        },
+        "max_attribute_samples": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "source_name",
+        "candidate_name"
+      ],
+      "additionalProperties": false
+    },
+    "configure_constraint": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "constraint": {
+          "type": "string"
+        },
+        "influence": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "mute": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "constraint"
+      ],
+      "additionalProperties": false
+    },
+    "configure_modifier": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "show_viewport": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "show_render": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "show_in_editmode": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "show_on_cage": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "move_to_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "modifier"
+      ],
+      "additionalProperties": false
+    },
+    "create_camera_orbit_animation": {
+      "type": "object",
+      "properties": {
+        "target_names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "camera_name": {
+          "type": "string"
+        },
+        "start_frame": {
+          "type": "number"
+        },
+        "end_frame": {
+          "type": "number"
+        },
+        "radius_multiplier": {
+          "type": "number"
+        },
+        "height_multiplier": {
+          "type": "number"
+        },
+        "start_angle_degrees": {
+          "type": "number"
+        },
+        "end_angle_degrees": {
+          "type": "number"
+        },
+        "focal_length": {
+          "type": "number"
+        },
+        "interpolation": {
+          "type": "string"
+        },
+        "clear_existing": {
+          "type": "boolean"
+        },
+        "set_active": {
+          "type": "boolean"
+        },
+        "set_scene_range": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "create_draped_surface_mesh": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "width": {
+          "type": "number"
+        },
+        "depth": {
+          "type": "number"
+        },
+        "subdivisions_x": {
+          "type": "number"
+        },
+        "subdivisions_y": {
+          "type": "number"
+        },
+        "sag": {
+          "type": "number"
+        },
+        "wave_amplitude": {
+          "type": "number"
+        },
+        "wave_frequency_x": {
+          "type": "number"
+        },
+        "wave_frequency_y": {
+          "type": "number"
+        },
+        "edge_lift": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rotation": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "collection_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "material_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "validate": {
+          "type": "boolean"
+        },
+        "shade_smooth": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "create_material": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "color": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 4
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "metallic": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "roughness": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "use_nodes": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "create_material_preset": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "preset": {
+          "type": "string"
+        },
+        "object_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "base_color": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 4
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "metallic": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "roughness": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "alpha": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "emission_color": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 4
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "emission_strength": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "transmission_weight": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ior": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "texture_maps": {
+          "anyOf": [
+            {
+              "description": "JSON value; operation-specific shape is validated by Blender.",
+              "x-blender-validation": "runtime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "slot_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "create_mesh_from_data": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "vertices": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 3
+          }
+        },
+        "faces": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 3
+          }
+        },
+        "edges": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "collection_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "material_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "validate": {
+          "type": "boolean"
+        },
+        "shade_smooth": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "vertices",
+        "faces"
+      ],
+      "additionalProperties": false
+    },
+    "create_parametric_staircase": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "step_count": {
+          "type": "number"
+        },
+        "step_width": {
+          "type": "number"
+        },
+        "step_depth": {
+          "type": "number"
+        },
+        "step_height": {
+          "type": "number"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rotation": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "collection_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "material_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "shade_smooth": {
+          "type": "boolean"
+        },
+        "validate": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "create_pbr_material_from_textures": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "texture_directory": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "texture_paths": {
+          "anyOf": [
+            {
+              "description": "JSON value; operation-specific shape is validated by Blender.",
+              "x-blender-validation": "runtime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "object_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "preset": {
+          "type": "string"
+        },
+        "recursive": {
+          "type": "boolean"
+        },
+        "max_files": {
+          "type": "number"
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "slot_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "create_primitive_assembly": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "parts": {
+          "anyOf": [
+            {
+              "description": "JSON value; operation-specific shape is validated by Blender.",
+              "x-blender-validation": "runtime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rotation": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "collection_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "create_root_empty": {
+          "type": "boolean"
+        },
+        "root_display_type": {
+          "type": "string"
+        },
+        "root_display_size": {
+          "type": "number"
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "validate": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "create_rigify_metarig": {
+      "type": "object",
+      "properties": {
+        "template": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rotation": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "collection_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replace_existing": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "create_room_shell": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "width": {
+          "type": "number"
+        },
+        "depth": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        },
+        "wall_thickness": {
+          "type": "number"
+        },
+        "floor_thickness": {
+          "type": "number"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "collection_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wall_material_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "floor_material_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ceiling_material_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "include_ceiling": {
+          "type": "boolean"
+        },
+        "open_front": {
+          "type": "boolean"
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "validate": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "create_shape_key_from_mix": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "new_shape_key_name": {
+          "type": "string"
+        },
+        "mix_values": {
+          "anyOf": [
+            {
+              "description": "JSON value; operation-specific shape is validated by Blender.",
+              "x-blender-validation": "runtime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value": {
+          "type": "number"
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "slider_min": {
+          "type": "number"
+        },
+        "slider_max": {
+          "type": "number"
+        },
+        "restore_values": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "new_shape_key_name"
+      ],
+      "additionalProperties": false
+    },
+    "create_shape_key_from_object": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "target_name": {
+          "type": "string"
+        },
+        "shape_key_name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "slider_min": {
+          "type": "number"
+        },
+        "slider_max": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "name",
+        "target_name",
+        "shape_key_name"
+      ],
+      "additionalProperties": false
+    },
+    "create_turntable_animation": {
+      "type": "object",
+      "properties": {
+        "target_names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "start_frame": {
+          "type": "number"
+        },
+        "end_frame": {
+          "type": "number"
+        },
+        "axis": {
+          "type": "string"
+        },
+        "rotations": {
+          "type": "number"
+        },
+        "interpolation": {
+          "type": "string"
+        },
+        "clear_existing": {
+          "type": "boolean"
+        },
+        "set_scene_range": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "create_wall_opening": {
+      "type": "object",
+      "properties": {
+        "wall_name": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "opening_type": {
+          "type": "string"
+        },
+        "center": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "opening_width": {
+          "type": "number"
+        },
+        "opening_height": {
+          "type": "number"
+        },
+        "cut_depth": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wall_axis": {
+          "type": "string"
+        },
+        "fill_type": {
+          "type": "string"
+        },
+        "panel_thickness": {
+          "type": "number"
+        },
+        "create_frame": {
+          "type": "boolean"
+        },
+        "frame_width": {
+          "type": "number"
+        },
+        "frame_depth": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "collection_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fill_material_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "frame_material_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "validate": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "wall_name"
+      ],
+      "additionalProperties": false
+    },
+    "decimate_mesh": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "result_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "mode": {
+          "type": "string"
+        },
+        "preserve_source": {
+          "type": "boolean"
+        },
+        "ratio": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target_face_count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "decimate_type": {
+          "type": "string"
+        },
+        "iterations": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "angle_limit": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "apply_modifier": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "delete_object": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "delete_objects": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ignore_missing": {
+          "type": "boolean"
+        },
+        "max_delete": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "delete_shape_key": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "shape_key_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "shape_key_name"
+      ],
+      "additionalProperties": false
+    },
+    "download_polyhaven_asset": {
+      "type": "object",
+      "properties": {
+        "asset_id": {
+          "type": "string"
+        },
+        "asset_type": {
+          "type": "string"
+        },
+        "resolution": {
+          "type": "string"
+        },
+        "file_format": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "asset_id",
+        "asset_type"
+      ],
+      "additionalProperties": false
+    },
+    "download_sketchfab_model": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "uid"
+      ],
+      "additionalProperties": false
+    },
+    "duplicate_object": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "new_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "linked": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "duplicate_object_pattern": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "count": {
+          "type": "number"
+        },
+        "layout": {
+          "type": "string"
+        },
+        "name_prefix": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "linked": {
+          "type": "boolean"
+        },
+        "include_source": {
+          "type": "boolean"
+        },
+        "center": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "spacing": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "axis": {
+          "type": "string"
+        },
+        "radius": {
+          "type": "number"
+        },
+        "plane": {
+          "type": "string"
+        },
+        "columns": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "row_spacing": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "start_angle_degrees": {
+          "type": "number"
+        },
+        "align_bottom_to_z": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "duplicate_shape_key": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "shape_key_name": {
+          "type": "string"
+        },
+        "new_shape_key_name": {
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "description": "JSON value; operation-specific shape is validated by Blender.",
+              "x-blender-validation": "runtime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "copy_properties": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "shape_key_name",
+        "new_shape_key_name"
+      ],
+      "additionalProperties": false
+    },
+    "execute_code": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "additionalProperties": false
+    },
+    "export_asset_package": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "filepath": {
+          "type": "string"
+        },
+        "file_format": {
+          "type": "string"
+        },
+        "uv_mode": {
+          "type": "string"
+        },
+        "apply_transforms": {
+          "type": "boolean"
+        },
+        "required_uvs": {
+          "type": "boolean"
+        },
+        "require_materials": {
+          "type": "boolean"
+        },
+        "check_textures": {
+          "type": "boolean"
+        },
+        "check_texture_formats": {
+          "type": "boolean"
+        },
+        "make_dirs": {
+          "type": "boolean"
+        },
+        "force_export": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "names",
+        "filepath"
+      ],
+      "additionalProperties": false
+    },
+    "export_object": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "filepath": {
+          "type": "string"
+        },
+        "file_format": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "names",
+        "filepath"
+      ],
+      "additionalProperties": false
+    },
+    "extract_shape_key_to_object": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "shape_key_name": {
+          "type": "string"
+        },
+        "result_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value": {
+          "type": "number"
+        },
+        "collection_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "copy_materials": {
+          "type": "boolean"
+        },
+        "replace_existing": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "shape_key_name"
+      ],
+      "additionalProperties": false
+    },
+    "focus_viewport_on_objects": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "area_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "frame_camera_to_targets": {
+      "type": "object",
+      "properties": {
+        "target_names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "camera_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "desired_frame_fill": {
+          "type": "number"
+        },
+        "frame_margin": {
+          "type": "number"
+        },
+        "min_distance_multiplier": {
+          "type": "number"
+        },
+        "max_distance_multiplier": {
+          "type": "number"
+        },
+        "set_active": {
+          "type": "boolean"
+        },
+        "set_dof_focus": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "generate_rigify_rig": {
+      "type": "object",
+      "properties": {
+        "metarig_name": {
+          "type": "string"
+        },
+        "rig_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "hide_metarig": {
+          "type": "boolean"
+        },
+        "regenerate_existing": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "metarig_name"
+      ],
+      "additionalProperties": false
+    },
+    "get_all_object_info": {
+      "type": "object",
+      "properties": {
+        "max_objects": {
+          "type": "number"
+        },
+        "start_index": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "get_blendfile_summary_datablocks": {
+      "type": "object",
+      "properties": {
+        "include_object_samples": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "get_blendfile_summary_missing_files": {
+      "type": "object",
+      "properties": {
+        "max_files": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "get_blendfile_summary_of_linked_libraries": {
+      "type": "object",
+      "properties": {
+        "max_libraries": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "get_blendfile_summary_path_info": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "get_blendfile_summary_usage_guess": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "get_local_asset_library_status": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "get_object_info": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "get_polyhaven_categories": {
+      "type": "object",
+      "properties": {
+        "asset_type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "asset_type"
+      ],
+      "additionalProperties": false
+    },
+    "get_polyhaven_status": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "get_scene_info": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "get_sketchfab_status": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "get_viewport_screenshot": {
+      "type": "object",
+      "properties": {
+        "max_size": {
+          "type": "number"
+        },
+        "filepath": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "format": {
+          "type": "string"
+        },
+        "area_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "get_vipermesh_runtime_identity": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "import_local_asset": {
+      "type": "object",
+      "properties": {
+        "asset_id": {
+          "type": "string"
+        },
+        "link": {
+          "type": "boolean"
+        },
+        "create_root": {
+          "type": "boolean"
+        },
+        "root_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rotation": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 3,
+                  "maxItems": 3
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "pivot": {
+          "type": "string"
+        },
+        "compact": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "asset_id"
+      ],
+      "additionalProperties": false
+    },
+    "inspect_addon_capabilities": {
+      "type": "object",
+      "properties": {
+        "addon_module": {
+          "type": "string"
+        },
+        "operator_ids": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "max_operators": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "addon_module"
+      ],
+      "additionalProperties": false
+    },
+    "inspect_animation_data": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "include_materials": {
+          "type": "boolean"
+        },
+        "include_actions": {
+          "type": "boolean"
+        },
+        "max_keyframes_per_curve": {
+          "type": "number"
+        },
+        "max_objects": {
+          "type": "number"
+        },
+        "max_materials": {
+          "type": "number"
+        },
+        "max_actions": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "inspect_blend_file_health": {
+      "type": "object",
+      "properties": {
+        "max_external_files": {
+          "type": "number"
+        },
+        "include_object_samples": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "inspect_collection_hierarchy": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "max_collections": {
+          "type": "number"
+        },
+        "max_objects": {
+          "type": "number"
+        },
+        "include_hidden": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "inspect_edit_bone_alignment": {
+      "type": "object",
+      "properties": {
+        "armature_name": {
+          "type": "string"
+        },
+        "bone_names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "max_bones": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "armature_name"
+      ],
+      "additionalProperties": false
+    },
+    "inspect_export_cleanup_candidates": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "action": {
+          "type": "string"
+        },
+        "helper_patterns": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target_collection": {
+          "type": "string"
+        },
+        "include_hidden": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "inspect_export_texture_dependencies": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "file_format": {
+          "type": "string"
+        },
+        "max_dependencies": {
+          "type": "number"
+        },
+        "check_texture_formats": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "names"
+      ],
+      "additionalProperties": false
+    },
+    "inspect_material_node_graph": {
+      "type": "object",
+      "properties": {
+        "material_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "material_name"
+      ],
+      "additionalProperties": false
+    },
+    "inspect_mesh_intersections": {
+      "type": "object",
+      "properties": {
+        "pairs": {
+          "anyOf": [
+            {
+              "description": "JSON value; operation-specific shape is validated by Blender.",
+              "x-blender-validation": "runtime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "max_intersections": {
+          "type": "number"
+        },
+        "epsilon": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "inspect_modifier_constraint_stack": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "include_empty": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "inspect_pose_deformation": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "baseline_frame": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "stress_frames": {
+          "anyOf": [
+            {
+              "description": "JSON value; operation-specific shape is validated by Blender.",
+              "x-blender-validation": "runtime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "max_objects": {
+          "type": "number"
+        },
+        "max_vertices_sample": {
+          "type": "number"
+        },
+        "max_edges_sample": {
+          "type": "number"
+        },
+        "edge_ratio_threshold": {
+          "type": "number"
+        },
+        "displacement_epsilon": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "inspect_render_artifact": {
+      "type": "object",
+      "properties": {
+        "image_path": {
+          "type": "string"
+        },
+        "min_brightness": {
+          "type": "number"
+        },
+        "max_brightness": {
+          "type": "number"
+        },
+        "min_alpha_coverage": {
+          "type": "number"
+        },
+        "edge_sample_percent": {
+          "type": "number"
+        },
+        "corner_sample_percent": {
+          "type": "number"
+        },
+        "background_tolerance": {
+          "type": "number"
+        },
+        "max_sample_pixels": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "image_path"
+      ],
+      "additionalProperties": false
+    },
+    "inspect_retopology_readiness": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "max_objects": {
+          "type": "number"
+        },
+        "high_density_face_threshold": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "inspect_rigging_data": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "include_vertex_groups": {
+          "type": "boolean"
+        },
+        "max_bones": {
+          "type": "number"
+        },
+        "max_objects": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "inspect_scene_grounding": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ground_z": {
+          "type": "number"
+        },
+        "tolerance": {
+          "type": "number"
+        },
+        "max_objects": {
+          "type": "number"
+        },
+        "include_supports": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "inspect_shape_keys": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "max_objects": {
+          "type": "number"
+        },
+        "max_shape_keys_per_object": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "inspect_spatial_relations": {
+      "type": "object",
+      "properties": {
+        "relations": {
+          "anyOf": [
+            {
+              "description": "JSON value; operation-specific shape is validated by Blender.",
+              "x-blender-validation": "runtime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tolerance": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "inspect_viewport_areas": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "inspect_weight_paint_readiness": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "max_objects": {
+          "type": "number"
+        },
+        "max_vertices_sample": {
+          "type": "number"
+        },
+        "max_influences": {
+          "type": "number"
+        },
+        "weight_sum_tolerance": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "invoke_addon_capability": {
+      "type": "object",
+      "properties": {
+        "addon_module": {
+          "type": "string"
+        },
+        "operator_id": {
+          "type": "string"
+        },
+        "arguments": {
+          "anyOf": [
+            {
+              "description": "JSON value; operation-specific shape is validated by Blender.",
+              "x-blender-validation": "runtime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "expected_source_fingerprint": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dry_run": {
+          "type": "boolean"
+        },
+        "approved": {
+          "type": "boolean"
+        },
+        "checkpoint_filepath": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "addon_module",
+        "operator_id"
+      ],
+      "additionalProperties": false
+    },
+    "join_objects": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "names"
+      ],
+      "additionalProperties": false
+    },
+    "list_installed_addons": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "list_materials": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "move_to_collection": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "collection_name": {
+          "type": "string"
+        },
+        "create_new": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "collection_name"
+      ],
+      "additionalProperties": false
+    },
+    "normalize_material_texture_channels": {
+      "type": "object",
+      "properties": {
+        "material_names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "apply_changes": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "normalize_vertex_group_weights": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "max_influences": {
+          "type": "number"
+        },
+        "prune_threshold": {
+          "type": "number"
+        },
+        "preserve_locked": {
+          "type": "boolean"
+        },
+        "only_deform_bone_groups": {
+          "type": "boolean"
+        },
+        "max_vertices": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "organize_collection_hierarchy": {
+      "type": "object",
+      "properties": {
+        "collection_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "object_names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "create_collection": {
+          "type": "boolean"
+        },
+        "move_objects": {
+          "type": "boolean"
+        },
+        "parent_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "clear_parent": {
+          "type": "boolean"
+        },
+        "hide_viewport": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "hide_render": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "collection_hide_viewport": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "collection_hide_render": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "parent_clear": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "keep_transform": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "parent_set": {
+      "type": "object",
+      "properties": {
+        "child_name": {
+          "type": "string"
+        },
+        "parent_name": {
+          "type": "string"
+        },
+        "parent_type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "child_name",
+        "parent_name"
+      ],
+      "additionalProperties": false
+    },
+    "prepare_uv_layout": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mode": {
+          "type": "string"
+        },
+        "uv_map_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "angle_limit": {
+          "type": "number"
+        },
+        "island_margin": {
+          "type": "number"
+        },
+        "rotate": {
+          "type": "boolean"
+        },
+        "scale": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "names"
+      ],
+      "additionalProperties": false
+    },
+    "project_vertex_group_weights": {
+      "type": "object",
+      "properties": {
+        "source_name": {
+          "type": "string"
+        },
+        "target_name": {
+          "type": "string"
+        },
+        "group_names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "armature_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "only_deform_bone_groups": {
+          "type": "boolean"
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "mapping": {
+          "type": "string"
+        },
+        "use_max_distance": {
+          "type": "boolean"
+        },
+        "max_distance": {
+          "type": "number"
+        },
+        "mix_mode": {
+          "type": "string"
+        },
+        "mix_factor": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "source_name",
+        "target_name"
+      ],
+      "additionalProperties": false
+    },
+    "quadriflow_remesh_mesh": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "result_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "mode": {
+          "type": "string"
+        },
+        "preserve_source": {
+          "type": "boolean"
+        },
+        "target_mode": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target_faces": {
+          "type": "number"
+        },
+        "target_ratio": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target_edge_length": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "use_mesh_symmetry": {
+          "type": "boolean"
+        },
+        "preserve_sharp": {
+          "type": "boolean"
+        },
+        "preserve_boundary": {
+          "type": "boolean"
+        },
+        "preserve_attributes": {
+          "type": "boolean"
+        },
+        "smooth_normals": {
+          "type": "boolean"
+        },
+        "seed": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "remove_object_constraint": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "constraint": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "constraint"
+      ],
+      "additionalProperties": false
+    },
+    "rename_object": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "new_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "new_name"
+      ],
+      "additionalProperties": false
+    },
+    "rename_shape_key": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "shape_key_name": {
+          "type": "string"
+        },
+        "new_shape_key_name": {
+          "type": "string"
+        },
+        "replace_existing": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "shape_key_name",
+        "new_shape_key_name"
+      ],
+      "additionalProperties": false
+    },
+    "render_image": {
+      "type": "object",
+      "properties": {
+        "output_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "file_format": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "open_after": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "render_thumbnail_to_path": {
+      "type": "object",
+      "properties": {
+        "output_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target_names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "preset": {
+          "type": "string"
+        },
+        "camera_name": {
+          "type": "string"
+        },
+        "resolution": {
+          "type": "number"
+        },
+        "samples": {
+          "type": "integer"
+        },
+        "file_format": {
+          "type": "string"
+        },
+        "frame_camera": {
+          "type": "boolean"
+        },
+        "distance_multiplier": {
+          "type": "number"
+        },
+        "focal_length": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "render_viewport_to_path": {
+      "type": "object",
+      "properties": {
+        "output_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "max_size": {
+          "type": "number"
+        },
+        "format": {
+          "type": "string"
+        },
+        "area_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "repair_mesh_geometry": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "result_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "mode": {
+          "type": "string"
+        },
+        "preserve_source": {
+          "type": "boolean"
+        },
+        "merge_by_distance": {
+          "type": "boolean"
+        },
+        "merge_distance": {
+          "type": "number"
+        },
+        "remove_loose": {
+          "type": "boolean"
+        },
+        "recalculate_normals": {
+          "type": "boolean"
+        },
+        "shade_smooth": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "restore_blend_checkpoint": {
+      "type": "object",
+      "properties": {
+        "checkpoint_filepath": {
+          "type": "string"
+        },
+        "original_filepath": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "checkpoint_filepath",
+        "original_filepath"
+      ],
+      "additionalProperties": false
+    },
+    "retarget_animation_clip": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string"
+        },
+        "target_armature": {
+          "type": "string"
+        },
+        "bone_map": {
+          "type": "object"
+        },
+        "action_name": {
+          "type": "string"
+        },
+        "export_names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "output_filepath": {
+          "type": "string"
+        },
+        "source_armature": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "root_motion": {
+          "type": "string"
+        },
+        "root_source_bone": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "frame_start": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "frame_end": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "bake_step": {
+          "type": "number"
+        },
+        "cleanup_imported": {
+          "type": "boolean"
+        },
+        "overwrite": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "filepath",
+        "target_armature",
+        "bone_map",
+        "action_name",
+        "export_names",
+        "output_filepath"
+      ],
+      "additionalProperties": false
+    },
+    "save_blend_file": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string"
+        },
+        "make_dirs": {
+          "type": "boolean"
+        },
+        "check_existing": {
+          "type": "boolean"
+        },
+        "copy": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "filepath"
+      ],
+      "additionalProperties": false
+    },
+    "search_local_assets": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "category": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tags": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "style": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "limit": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "search_polyhaven_assets": {
+      "type": "object",
+      "properties": {
+        "asset_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "categories": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "search_sketchfab_models": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "categories": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "count": {
+          "type": "number"
+        },
+        "downloadable": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "additionalProperties": false
+    },
+    "select_scene_objects": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "active_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "selection_mode": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "set_active_collection": {
+      "type": "object",
+      "properties": {
+        "collection_name": {
+          "type": "string"
+        },
+        "create_new": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "collection_name"
+      ],
+      "additionalProperties": false
+    },
+    "set_camera_properties": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "lens": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sensor_width": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "clip_start": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "clip_end": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dof_use": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dof_focus_distance": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dof_aperture_fstop": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "set_active": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "set_curve_properties": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "resolution": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "bevel_depth": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "bevel_resolution": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fill_mode": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cyclic": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "material_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "set_edit_bone_alignment": {
+      "type": "object",
+      "properties": {
+        "armature_name": {
+          "type": "string"
+        },
+        "bones": {
+          "description": "JSON value; operation-specific shape is validated by Blender.",
+          "x-blender-validation": "runtime"
+        },
+        "allow_generated_target": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "armature_name",
+        "bones"
+      ],
+      "additionalProperties": false
+    },
+    "set_empty_properties": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "display_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "display_size": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "show_name": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "show_in_front": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "set_keyframe_animation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "data_path": {
+          "type": "string"
+        },
+        "keyframes": {
+          "anyOf": [
+            {
+              "description": "JSON value; operation-specific shape is validated by Blender.",
+              "x-blender-validation": "runtime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "interpolation": {
+          "type": "string"
+        },
+        "easing": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rotation_unit": {
+          "type": "string"
+        },
+        "clear_existing": {
+          "type": "boolean"
+        },
+        "set_scene_range": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "set_light_properties": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "energy": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "color": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 4
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "shadow_soft_size": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "spot_size": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "spot_blend": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "size": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "set_object_transform": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rotation": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "set_origin": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "origin_type": {
+          "type": "string"
+        },
+        "center": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "set_render_settings": {
+      "type": "object",
+      "properties": {
+        "engine": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "resolution_x": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "resolution_y": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "resolution_percentage": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "samples": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "use_denoising": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "film_transparent": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "output_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "file_format": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "set_shape_key_properties": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "shape_key_name": {
+          "type": "string"
+        },
+        "slider_min": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "slider_max": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "mute": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "clamp_value": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "shape_key_name"
+      ],
+      "additionalProperties": false
+    },
+    "set_shape_key_value": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "shape_key_name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        },
+        "frame": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "keyframes": {
+          "anyOf": [
+            {
+              "description": "JSON value; operation-specific shape is validated by Blender.",
+              "x-blender-validation": "runtime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "interpolation": {
+          "type": "string"
+        },
+        "clear_existing": {
+          "type": "boolean"
+        },
+        "set_scene_range": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "shape_key_name",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "set_texture": {
+      "type": "object",
+      "properties": {
+        "object_name": {
+          "type": "string"
+        },
+        "texture_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "object_name",
+        "texture_id"
+      ],
+      "additionalProperties": false
+    },
+    "set_timeline_settings": {
+      "type": "object",
+      "properties": {
+        "frame_start": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "frame_end": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "current_frame": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fps": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fps_base": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "use_preview_range": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "preview_start": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "preview_end": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "playback_sync": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "set_viewport_shading": {
+      "type": "object",
+      "properties": {
+        "shading_type": {
+          "type": "string",
+          "examples": [
+            "WIREFRAME",
+            "SOLID",
+            "MATERIAL",
+            "RENDERED"
+          ],
+          "description": "Preferred values shown as examples; Blender validates normalized values and aliases.",
+          "x-blender-validation": "runtime"
+        },
+        "area_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "all_areas": {
+          "type": "boolean"
+        },
+        "show_overlays": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "show_xray": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "set_visibility": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "hide_viewport": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "hide_render": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "set_world_environment": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string"
+        },
+        "color": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 4
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "strength": {
+          "type": "number"
+        },
+        "hdri_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rotation_z": {
+          "type": "number"
+        },
+        "sky_type": {
+          "type": "string"
+        },
+        "sun_elevation": {
+          "type": "number"
+        },
+        "sun_rotation": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "setup_studio_scene": {
+      "type": "object",
+      "properties": {
+        "target_names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "preset": {
+          "type": "string"
+        },
+        "camera_name": {
+          "type": "string"
+        },
+        "frame_camera": {
+          "type": "boolean"
+        },
+        "focal_length": {
+          "type": "number"
+        },
+        "distance_multiplier": {
+          "type": "number"
+        },
+        "resolution_x": {
+          "type": "integer"
+        },
+        "resolution_y": {
+          "type": "integer"
+        },
+        "samples": {
+          "type": "integer"
+        },
+        "background_color": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 4
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "world_strength": {
+          "type": "number"
+        },
+        "set_active_camera": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "shade_smooth": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "smooth": {
+          "type": "boolean"
+        },
+        "angle": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "soften_mesh_edges": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "width": {
+          "type": "number"
+        },
+        "segments": {
+          "type": "number"
+        },
+        "profile": {
+          "type": "number"
+        },
+        "affect": {
+          "type": "string"
+        },
+        "harden_normals": {
+          "type": "boolean"
+        },
+        "clamp_overlap": {
+          "type": "boolean"
+        },
+        "shade_smooth": {
+          "type": "boolean"
+        },
+        "add_weighted_normal": {
+          "type": "boolean"
+        },
+        "apply_modifier": {
+          "type": "boolean"
+        },
+        "modifier_name": {
+          "type": "string"
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "skip_non_mesh": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "names"
+      ],
+      "additionalProperties": false
+    },
+    "transfer_vertex_group_weights": {
+      "type": "object",
+      "properties": {
+        "source_name": {
+          "type": "string"
+        },
+        "target_name": {
+          "type": "string"
+        },
+        "group_names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "armature_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "only_deform_bone_groups": {
+          "type": "boolean"
+        },
+        "replace_existing": {
+          "type": "boolean"
+        },
+        "max_vertices": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "source_name",
+        "target_name"
+      ],
+      "additionalProperties": false
+    },
+    "validate_export_readiness": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "filepath": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "file_format": {
+          "type": "string"
+        },
+        "required_uvs": {
+          "type": "boolean"
+        },
+        "require_materials": {
+          "type": "boolean"
+        },
+        "require_applied_transforms": {
+          "type": "boolean"
+        },
+        "check_textures": {
+          "type": "boolean"
+        },
+        "check_texture_formats": {
+          "type": "boolean"
+        },
+        "require_absolute_path": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "names"
+      ],
+      "additionalProperties": false
+    },
+    "validate_gltf_roundtrip": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string"
+        },
+        "cleanup": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "filepath"
+      ],
+      "additionalProperties": false
+    },
+    "validate_mesh_geometry": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cleanup": {
+          "type": "boolean"
+        },
+        "require_closed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "names"
+      ],
+      "additionalProperties": false
+    },
+    "validate_object_clearance": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "other_name": {
+          "type": "string"
+        },
+        "margin": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "name",
+        "other_name"
+      ],
+      "additionalProperties": false
+    },
+    "validate_studio_scene": {
+      "type": "object",
+      "properties": {
+        "target_names": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "camera_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "require_camera": {
+          "type": "boolean"
+        },
+        "require_lights": {
+          "type": "boolean"
+        },
+        "require_render_settings": {
+          "type": "boolean"
+        },
+        "min_frame_fill": {
+          "type": "number"
+        },
+        "max_frame_fill": {
+          "type": "number"
+        },
+        "frame_margin": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "voxel_remesh_mesh": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "result_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "mode": {
+          "type": "string"
+        },
+        "preserve_source": {
+          "type": "boolean"
+        },
+        "voxel_size": {
+          "type": "number"
+        },
+        "adaptivity": {
+          "type": "number"
+        },
+        "preserve_attributes": {
+          "type": "boolean"
+        },
+        "preserve_volume": {
+          "type": "boolean"
+        },
+        "fix_poles": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -6,6 +6,7 @@ import bpy
 import mathutils
 import json
 import threading
+import queue
 import socket
 import time
 import requests
@@ -61,6 +62,10 @@ class BlenderMCPServer:
         self.clients = set()
         self.clients_lock = threading.Lock()
         self.last_error = ""
+        self.background = bool(bpy.app.background)
+        self.pending = queue.Queue(maxsize=128)
+        self.last_activity = time.monotonic()
+        self._timer_callback = self._drain_gui_commands
 
     @property
     def active_clients(self):
@@ -82,6 +87,9 @@ class BlenderMCPServer:
 
             # Only set running after socket is successfully bound
             self.running = True
+            self.last_activity = time.monotonic()
+            if not self.background:
+                bpy.app.timers.register(self._timer_callback, first_interval=0, persistent=True)
 
             # Start server thread
             self.server_thread = threading.Thread(target=self._server_loop)
@@ -96,6 +104,16 @@ class BlenderMCPServer:
 
     def stop(self):
         self.running = False
+        if threading.current_thread() is threading.main_thread():
+            if bpy.app.timers.is_registered(self._timer_callback):
+                bpy.app.timers.unregister(self._timer_callback)
+        while True:
+            try:
+                item = self.pending.get_nowait()
+            except queue.Empty:
+                break
+            item["response"] = {"status": "error", "code": "BRIDGE_STOPPED", "message": "Bridge stopped before dispatch"}
+            item["done"].set()
 
         with self.clients_lock:
             clients = list(self.clients)
@@ -165,10 +183,57 @@ class BlenderMCPServer:
 
         print("Server thread stopped")
 
+    def _drain_commands(self):
+        if threading.current_thread() is not threading.main_thread():
+            raise RuntimeError("Blender commands must execute on the main thread")
+        started = time.monotonic()
+        for _ in range(8):
+            if not self.running:
+                break
+            try:
+                item = self.pending.get_nowait()
+            except queue.Empty:
+                break
+            try:
+                response = self.execute_command(item["command"])
+                if "id" in item["command"]:
+                    response["id"] = item["command"]["id"]
+                item["response"] = response
+            except Exception as exc:
+                item["response"] = {"status": "error", "message": str(exc)}
+            finally:
+                self.last_activity = time.monotonic()
+                item["done"].set()
+            if time.monotonic() - started >= 0.01:
+                break
+
+    def _drain_gui_commands(self):
+        if not self.running:
+            return None
+        self._drain_commands()
+        return 0.01
+
+    def serve_headless(self, idle_timeout=0, max_runtime=0):
+        """Own the main thread explicitly; background Blender has no GUI event loop."""
+        if not self.background or threading.current_thread() is not threading.main_thread():
+            raise RuntimeError("serve_headless requires background Blender's main thread")
+        started = time.monotonic()
+        try:
+            while self.running:
+                self._drain_commands()
+                now = time.monotonic()
+                if idle_timeout and now - self.last_activity >= idle_timeout:
+                    break
+                if max_runtime and now - started >= max_runtime:
+                    break
+                time.sleep(0.005)
+        finally:
+            self.stop()
+
     def _handle_client(self, client):
         """Handle connected client"""
         print("Client handler started")
-        client.settimeout(None)  # No timeout
+        client.settimeout(1.0)
         buffer = b''
         MAX_BUFFER_BYTES = 10 * 1024 * 1024  # 10 MB safety limit
 
@@ -176,47 +241,64 @@ class BlenderMCPServer:
             while self.running:
                 # Receive data
                 try:
-                    data = client.recv(8192)
+                    try:
+                        data = client.recv(8192)
+                    except socket.timeout:
+                        continue
                     if not data:
                         print("Client disconnected")
                         break
 
                     buffer += data
                     if len(buffer) > MAX_BUFFER_BYTES:
+                        client.sendall(json.dumps({"status": "error", "code": "REQUEST_TOO_LARGE", "message": "Request exceeds 10 MiB"}).encode())
                         print(f"Buffer exceeded {MAX_BUFFER_BYTES} bytes, dropping connection")
                         break
                     try:
-                        # Try to parse command
-                        command = json.loads(buffer.decode('utf-8'))
+                        text = buffer.decode('utf-8')
+                    except UnicodeDecodeError as exc:
+                        if exc.reason == 'unexpected end of data':
+                            continue
+                        client.sendall(json.dumps({"status": "error", "code": "INVALID_ENCODING", "message": "Request must be UTF-8 JSON"}).encode())
+                        break
+                    try:
+                        text = text.lstrip()
+                        if not text:
+                            buffer = b''
+                            continue
+                        def reject_constant(value):
+                            raise ValueError(f"Non-JSON numeric constant: {value}")
+                        command, consumed = json.JSONDecoder(parse_constant=reject_constant).raw_decode(text)
+                        if text[consumed:].strip():
+                            client.sendall(json.dumps({"status": "error", "code": "PIPELINING_NOT_SUPPORTED", "message": "Send one complete request and await its response"}).encode())
+                            break
                         buffer = b''
-
-                        # Execute command in Blender's main thread
-                        def execute_wrapper():
-                            try:
-                                response = self.execute_command(command)
-                                response_json = json.dumps(response)
-                                try:
-                                    client.sendall(response_json.encode('utf-8'))
-                                except:
-                                    print("Failed to send response - client disconnected")
-                            except Exception as e:
-                                print(f"Error executing command: {str(e)}")
-                                traceback.print_exc()
-                                try:
-                                    error_response = {
-                                        "status": "error",
-                                        "message": str(e)
-                                    }
-                                    client.sendall(json.dumps(error_response).encode('utf-8'))
-                                except:
-                                    pass
-                            return None
-
-                        # Schedule execution in main thread
-                        bpy.app.timers.register(execute_wrapper, first_interval=0.0)
+                        if (not isinstance(command, dict) or not isinstance(command.get("type"), str)
+                                or not isinstance(command.get("params", {}), dict)
+                                or ("id" in command and (isinstance(command["id"], bool) or not isinstance(command["id"], (str, int))))):
+                            client.sendall(json.dumps({"status": "error", "code": "INVALID_REQUEST", "message": "Expected type:string, params:object and optional string/integer id"}).encode())
+                            continue
+                        item = {"command": command, "done": threading.Event()}
+                        try:
+                            self.pending.put_nowait(item)
+                        except queue.Full:
+                            client.sendall(json.dumps({"status": "error", "code": "BRIDGE_BUSY", "message": "Command queue is full"}).encode())
+                            continue
+                        self.last_activity = time.monotonic()
+                        while self.running and not item["done"].wait(0.1):
+                            pass
+                        if not item["done"].is_set():
+                            break
+                        # Socket I/O stays off the Blender main thread.
+                        client.sendall(json.dumps(item["response"]).encode('utf-8'))
                     except json.JSONDecodeError:
-                        # Incomplete data, wait for more
-                        pass
+                        if text and text[0] not in '{["-0123456789tfn':
+                            client.sendall(json.dumps({"status": "error", "code": "INVALID_JSON", "message": "Invalid JSON document"}).encode())
+                            break
+                        continue
+                    except ValueError as exc:
+                        client.sendall(json.dumps({"status": "error", "code": "INVALID_JSON", "message": str(exc)}).encode())
+                        break
                 except Exception as e:
                     print(f"Error receiving data: {str(e)}")
                     break
@@ -245,6 +327,11 @@ class BlenderMCPServer:
         """Internal command execution with proper context"""
         cmd_type = command.get("type")
         params = command.get("params", {})
+        if bpy.app.background and cmd_type in {
+            "get_viewport_screenshot", "render_viewport_to_path", "inspect_viewport_areas",
+            "set_viewport_shading", "focus_viewport_on_objects",
+        }:
+            return {"status": "error", "code": "UI_CONTEXT_REQUIRED", "message": f"{cmd_type} requires a GUI viewport; use a camera render in background mode"}
 
         # Base handlers that are always available
         handlers = {
@@ -1621,6 +1708,23 @@ class BlenderMCPServer:
         except Exception as e:
             return {"error": f"Failed to set transform: {str(e)}"}
 
+    def _placement_world_bounds(self, obj):
+        """Use evaluated geometry, including descendants of imported assembly roots."""
+        candidates = list(obj.children_recursive) if obj.type == 'EMPTY' else [obj]
+        geometry_types = {'MESH', 'CURVE', 'SURFACE', 'FONT', 'META'}
+        geometry = [item for item in candidates if item.type in geometry_types]
+        if not geometry:
+            raise ValueError(f"Object '{obj.name}' has no geometry for placement bounds")
+        depsgraph = bpy.context.evaluated_depsgraph_get()
+        points = []
+        for item in geometry:
+            evaluated = item.evaluated_get(depsgraph)
+            points.extend(evaluated.matrix_world @ Vector(corner) for corner in evaluated.bound_box)
+        return (
+            Vector(tuple(min(point[axis] for point in points) for axis in range(3))),
+            Vector(tuple(max(point[axis] for point in points) for axis in range(3))),
+        )
+
     def align_object_to_surface(
         self,
         name,
@@ -1639,18 +1743,7 @@ class BlenderMCPServer:
                 return {"error": f"Object '{name}' has no bounding box for surface alignment"}
 
             def world_bounds(target_obj):
-                corners = [target_obj.matrix_world @ Vector(corner) for corner in target_obj.bound_box]
-                min_corner = Vector((
-                    min(corner.x for corner in corners),
-                    min(corner.y for corner in corners),
-                    min(corner.z for corner in corners),
-                ))
-                max_corner = Vector((
-                    max(corner.x for corner in corners),
-                    max(corner.y for corner in corners),
-                    max(corner.z for corner in corners),
-                ))
-                return min_corner, max_corner
+                return self._placement_world_bounds(target_obj)
 
             placement_key = str(placement or "GROUND").upper().replace("-", "_").replace(" ", "_")
             aliases = {
@@ -1684,6 +1777,8 @@ class BlenderMCPServer:
                     return {"error": f"Reference object not found: {reference_name}"}
                 if reference_obj == obj:
                     return {"error": "reference_name must refer to a different object"}
+                if reference_obj in obj.children_recursive or obj in reference_obj.children_recursive:
+                    return {"error": "Support and subject must not contain one another in the same hierarchy"}
                 if not getattr(reference_obj, "bound_box", None):
                     return {"error": f"Reference object '{reference_name}' has no bounding box"}
 
@@ -1708,6 +1803,7 @@ class BlenderMCPServer:
             matrix = obj.matrix_world.copy()
             matrix.translation += delta
             obj.matrix_world = matrix
+            bpy.context.view_layer.update()
             after_min, after_max = world_bounds(obj)
 
             return {
@@ -1742,18 +1838,7 @@ class BlenderMCPServer:
             def world_bounds(target_obj):
                 if not getattr(target_obj, "bound_box", None):
                     raise ValueError(f"Object '{target_obj.name}' has no bounding box")
-                corners = [target_obj.matrix_world @ Vector(corner) for corner in target_obj.bound_box]
-                min_corner = Vector((
-                    min(corner.x for corner in corners),
-                    min(corner.y for corner in corners),
-                    min(corner.z for corner in corners),
-                ))
-                max_corner = Vector((
-                    max(corner.x for corner in corners),
-                    max(corner.y for corner in corners),
-                    max(corner.z for corner in corners),
-                ))
-                return min_corner, max_corner
+                return self._placement_world_bounds(target_obj)
 
             resolved_margin = float(margin)
             if resolved_margin < 0.0 or resolved_margin > 1000.0:
@@ -1832,7 +1917,14 @@ class BlenderMCPServer:
                 return None
 
             def bounds_for(obj):
-                if getattr(obj, "bound_box", None):
+                if obj.type in {'MESH', 'CURVE', 'SURFACE', 'FONT', 'META'} or (
+                    obj.type == 'EMPTY' and any(
+                        child.type in {'MESH', 'CURVE', 'SURFACE', 'FONT', 'META'}
+                        for child in obj.children_recursive
+                    )
+                ):
+                    min_corner, max_corner = self._placement_world_bounds(obj)
+                elif getattr(obj, "bound_box", None):
                     corners = [obj.matrix_world @ mathutils.Vector(corner) for corner in obj.bound_box]
                     min_corner = mathutils.Vector((
                         min(corner.x for corner in corners),
@@ -15559,25 +15651,31 @@ class BlenderMCPServer:
         try:
             scene = bpy.context.scene
             changes = []
-            available_engines = [item.identifier for item in scene.render.bl_rna.properties["engine"].enum_items]
+            engine_hints = {item.identifier for item in scene.render.bl_rna.properties["engine"].enum_items}
+            engine_hints.add(scene.render.engine)
             requested_engine = None
 
             if engine is not None:
                 eng = str(engine).upper()
                 requested_engine = eng
-                # Prefer the stable EEVEE enum exposed by current Blender. BLENDER_EEVEE_NEXT is
-                # accepted only as a compatibility alias for runtimes that still expose it.
-                if eng in ('EEVEE', 'BLENDER_EEVEE', 'EEVEE_NEXT'):
-                    if 'BLENDER_EEVEE' not in available_engines:
-                        return {"error": "Render engine 'BLENDER_EEVEE' is not available", "available_engines": available_engines}
-                    scene.render.engine = 'BLENDER_EEVEE'
-                    eng = scene.render.engine
-                else:
-                    if eng == 'BLENDER_EEVEE_NEXT' and eng not in available_engines and 'BLENDER_EEVEE' in available_engines:
-                        eng = 'BLENDER_EEVEE'
-                    if eng not in available_engines:
-                        return {"error": f"Render engine '{requested_engine}' is not available", "available_engines": available_engines}
-                    scene.render.engine = eng
+                candidates = [eng]
+                if eng in ('EEVEE', 'BLENDER_EEVEE', 'EEVEE_NEXT', 'BLENDER_EEVEE_NEXT'):
+                    candidates = ['BLENDER_EEVEE', 'BLENDER_EEVEE_NEXT']
+                # Static RNA enum_items omits dynamically registered engines such as Cycles.
+                # Property assignment uses Blender's complete runtime enum and validates it.
+                engine_error = None
+                for candidate in candidates:
+                    try:
+                        scene.render.engine = candidate
+                        engine_error = None
+                        break
+                    except (TypeError, ValueError) as exc:
+                        engine_error = str(exc)
+                if engine_error:
+                    return {"error": f"Render engine '{requested_engine}' is not available: {engine_error}",
+                            "available_engines": sorted(engine_hints), "available_engines_complete": False}
+                eng = scene.render.engine
+                engine_hints.add(eng)
                 if requested_engine != eng:
                     changes.append(f"requested_engine={requested_engine}")
                 changes.append(f"engine={eng}")
@@ -15617,7 +15715,8 @@ class BlenderMCPServer:
                 "success": True,
                 "requested_engine": requested_engine,
                 "engine": scene.render.engine,
-                "available_engines": available_engines,
+                "available_engines": sorted(engine_hints),
+                "available_engines_complete": False,
                 "resolution": f"{scene.render.resolution_x}x{scene.render.resolution_y}",
                 "changes": changes,
             }
@@ -17187,6 +17286,12 @@ def register():
     bpy.app.handlers.load_post.append(_sync_server_status)
 
     print("ViperMesh Blender addon registered")
+    if os.environ.get("VIPERMESH_BRIDGE_AUTOSTART", "").lower() in {"1", "true", "yes"}:
+        port = int(os.environ.get("VIPERMESH_BRIDGE_PORT", "9876"))
+        if not 1024 <= port <= 65535:
+            raise ValueError("VIPERMESH_BRIDGE_PORT must be between 1024 and 65535")
+        bpy.context.scene.blendermcp_port = port
+        bpy.ops.vipermesh.start_server()
 
 def unregister():
     # Stop the server if it's running
@@ -17221,5 +17326,33 @@ def unregister():
     print("ViperMesh Blender addon unregistered")
 
 if __name__ == "__main__":
+    import argparse
+    import sys
+
+    parser = argparse.ArgumentParser(description="ViperMesh local background Blender bridge")
+    parser.add_argument("--serve", action="store_true", help="Run the main-thread background service loop")
+    parser.add_argument("--port", type=int, default=int(os.environ.get("VIPERMESH_BRIDGE_PORT", "9876")))
+    parser.add_argument("--idle-timeout", type=float, default=0, help="Stop after this many idle seconds; 0 disables")
+    parser.add_argument("--max-runtime", type=float, default=0, help="Stop between commands after this many seconds; 0 disables")
+    args = parser.parse_args(sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else [])
+    if not 1024 <= args.port <= 65535 or not all(math.isfinite(value) and value >= 0 for value in (args.idle_timeout, args.max_runtime)):
+        parser.error("Use a port between 1024 and 65535 and nonnegative timeouts")
     register()
+    should_serve = args.serve or os.environ.get("VIPERMESH_BRIDGE_AUTOSTART", "").lower() in {"1", "true", "yes"}
+    if should_serve and bpy.app.background:
+        try:
+            bpy.context.scene.blendermcp_port = args.port
+            existing = getattr(bpy.types, "blendermcp_server", None)
+            if existing and existing.port != args.port:
+                bpy.ops.vipermesh.stop_server()
+            bpy.ops.vipermesh.start_server()
+            bridge = bpy.types.blendermcp_server
+            if not bridge.running:
+                raise RuntimeError(bridge.last_error or "Unable to start bridge")
+            print(json.dumps({"vipermesh_headless_ready": True, "host": bridge.host, "port": bridge.port}), flush=True)
+            bridge.serve_headless(args.idle_timeout, args.max_runtime)
+        except KeyboardInterrupt:
+            pass
+        finally:
+            unregister()
 

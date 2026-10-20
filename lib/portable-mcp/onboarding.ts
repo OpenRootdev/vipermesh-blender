@@ -25,6 +25,9 @@ Never invoke the server command separately for each tool call.
 3. Inspect the scene with \`get_scene_info\` through \`call_blender_tool\`.
 4. Search task-specific guidance when the operation is unfamiliar or risky.
 5. Discover only the relevant tool category or search term.
+6. When argument shape is unclear, request filtered \`list_blender_tools\` with
+   \`includeSchemas=true\`. Detailed nested configuration may still require
+   task-specific guidance and Blender-side checks.
 
 ## Mutation workflow
 

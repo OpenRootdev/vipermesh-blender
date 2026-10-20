@@ -324,3 +324,5 @@ ViperMesh for Blender is released under the [MIT License](LICENSE). It includes
 work derived from [BlenderMCP](https://github.com/ahujasid/mcp-for-blender) by
 Siddharth Ahuja. See [NOTICE.md](NOTICE.md) for attribution and trademark
 notices.
+
+Developer preview: headless operation, action schemas and catalog refresh are documented in the [runtime reference](docs/runtime-operations.md) (English-only; unreleased).

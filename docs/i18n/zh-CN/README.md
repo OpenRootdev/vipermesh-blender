@@ -278,3 +278,5 @@ python -m py_compile addon/vipermesh-addon.py
 ## 许可证和署名
 
 ViperMesh for Blender 按 [MIT License](../../../LICENSE) 发布。它包含派生自 Siddharth Ahuja 的 [BlenderMCP](https://github.com/ahujasid/mcp-for-blender) 的工作。请参阅 [NOTICE.md](NOTICE.md) 了解署名和商标声明。
+
+开发者预览：无界面运行、操作参数模式和目录刷新见[运行时参考](../../../docs/runtime-operations.md)（仅英文，尚未发布）。

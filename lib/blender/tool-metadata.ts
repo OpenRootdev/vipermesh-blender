@@ -13,4 +13,5 @@ export interface ToolMetadata {
   description: string
   category: ToolCategory
   parameters?: string
+  inputSchema?: import("./tool-input-schema").BlenderInputSchema
 }

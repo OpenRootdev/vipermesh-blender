@@ -1,4 +1,5 @@
 import type { McpCommand, McpResponse } from "../mcp/types"
+import { getBlenderToolInputSchema as getInputSchema, validateBlenderToolArguments } from "../blender/tool-input-schema"
 
 import {
   getGuidanceDocument,
@@ -45,6 +46,7 @@ export interface PortableMcpServiceDependencies {
 export interface ListBlenderToolsInput {
   category?: string
   query?: string
+  includeSchemas?: boolean
 }
 
 export interface BlenderToolBatchInput {
@@ -112,6 +114,7 @@ export function createPortableMcpService(
       throw new Error(`Blender tool is not available through the portable gateway: ${name}`)
     }
     validatePortableCommandPayload(params)
+    validateBlenderToolArguments(name, params)
   }
 
   async function executeCommand(name: string, params: Record<string, unknown>) {
@@ -199,7 +202,8 @@ export function createPortableMcpService(
         return `${tool.name} ${tool.description} ${tool.parameters ?? ""}`
           .toLowerCase()
           .includes(query)
-      })
+      }).map(tool => input.includeSchemas
+        ? { ...tool, inputSchema: getInputSchema(tool.name) } : tool)
 
       return {
         count: tools.length,

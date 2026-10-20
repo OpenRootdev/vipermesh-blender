@@ -25,7 +25,7 @@ export class BlenderMcpClient {
    * Connection is memoized per client instance.
    */
   private async ensureConnection() {
-    if (this.connected && this.socket) {
+    if (this.connected && this.socket && !this.socket.destroyed) {
       return this.socket
     }
 
@@ -33,6 +33,7 @@ export class BlenderMcpClient {
 
     this.socket = await new Promise<net.Socket>((resolve, reject) => {
       const socket = net.createConnection({ host, port }, () => {
+        socket.setTimeout(0)
         this.connected = true
         resolve(socket)
       })
@@ -46,9 +47,12 @@ export class BlenderMcpClient {
       })
     })
 
-    this.socket.on("close", () => {
-      this.connected = false
-      this.socket = null
+    const connectedSocket = this.socket
+    connectedSocket.on("close", () => {
+      if (this.socket === connectedSocket) {
+        this.connected = false
+        this.socket = null
+      }
     })
 
     return this.socket
@@ -67,10 +71,11 @@ export class BlenderMcpClient {
   private async executeSerialized<T = unknown>(command: McpCommand): Promise<McpResponse<T>> {
     const socket = await this.ensureConnection()
 
-    const payload = JSON.stringify({
+    const request = {
       ...command,
       id: command.id ?? randomUUID(),
-    })
+    }
+    const payload = JSON.stringify(request)
 
     const response = await new Promise<string>((resolve, reject) => {
       const chunks: Buffer[] = []
@@ -79,7 +84,12 @@ export class BlenderMcpClient {
         chunks.push(chunk)
         const raw = Buffer.concat(chunks).toString("utf8")
         try {
-          JSON.parse(raw)
+          const parsed = JSON.parse(raw) as { id?: unknown }
+          if (parsed.id !== undefined && parsed.id !== request.id) {
+            onError(new Error("Blender MCP response id mismatch"))
+            socket.destroy()
+            return
+          }
           cleanup()
           resolve(raw)
         } catch {
@@ -94,18 +104,23 @@ export class BlenderMcpClient {
       }
 
       const onTimeout = () => {
-        cleanup()
-        reject(new Error("Timed out while waiting for Blender MCP response"))
+        onError(new Error("Timed out while waiting for Blender MCP response"))
+        socket.destroy()
       }
+      const onClose = () => onError(new Error("Blender MCP connection closed before a complete response"))
+      const timer = setTimeout(onTimeout, this.config.timeoutMs)
 
       const cleanup = () => {
+        clearTimeout(timer)
         socket.off("data", onData)
         socket.off("error", onError)
         socket.off("timeout", onTimeout)
+        socket.off("close", onClose)
       }
 
       socket.once("error", onError)
       socket.once("timeout", onTimeout)
+      socket.once("close", onClose)
       socket.on("data", onData)
       socket.write(`${payload}\n`)
     })
@@ -128,14 +143,16 @@ export class BlenderMcpClient {
   async close() {
     await this.executionTail
     if (!this.socket) return
-    await new Promise<void>((resolve) => {
-      this.socket?.end(() => {
-        resolve()
-      })
-    })
-    this.socket.destroy()
-    this.connected = false
+    const socket = this.socket
     this.socket = null
+    this.connected = false
+    if (socket.destroyed) return
+    await new Promise<void>((resolve) => {
+      const finish = () => { socket.off("close", finish); resolve() }
+      socket.once("close", finish)
+      socket.end(finish)
+    })
+    socket.destroy()
   }
 }
 
