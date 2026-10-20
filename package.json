@@ -6,13 +6,13 @@
   "private": false,
   "type": "module",
   "author": "ViperMesh contributors",
-  "homepage": "https://ker102.github.io/vipermesh-blender/",
+  "homepage": "https://openrootdev.github.io/vipermesh-blender/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ker102/vipermesh-blender.git"
+    "url": "git+https://github.com/OpenRootdev/vipermesh-blender.git"
   },
   "bugs": {
-    "url": "https://github.com/Ker102/vipermesh-blender/issues"
+    "url": "https://github.com/OpenRootdev/vipermesh-blender/issues"
   },
   "keywords": [
     "blender",

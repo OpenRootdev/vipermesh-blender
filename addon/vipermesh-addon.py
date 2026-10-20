@@ -42,7 +42,7 @@ bl_info = {
     "location": "View3D > Sidebar > ViperMesh",
     "description": "Persistent local Blender bridge for ViperMesh and MCP-compatible agents",
     "category": "Interface",
-    "doc_url": "https://github.com/Ker102/vipermesh-blender",
+    "doc_url": "https://github.com/OpenRootdev/vipermesh-blender",
 }
 
 # Add User-Agent as required by Poly Haven API

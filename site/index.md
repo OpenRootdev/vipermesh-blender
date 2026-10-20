@@ -2,8 +2,8 @@
 
 > Free, open-source local AI assistance for Blender scene editing, inspection and reusable 3D operations.
 
-Canonical page: https://ker102.github.io/vipermesh-blender/
-Repository: https://github.com/Ker102/vipermesh-blender
+Canonical page: https://openrootdev.github.io/vipermesh-blender/
+Repository: https://github.com/OpenRootdev/vipermesh-blender
 License: MIT, with upstream attribution in NOTICE.md.
 
 ViperMesh uses two local parts. A compatible AI client launches one persistent Node MCP process over stdio. That process connects to the Blender addon through a serialized loopback TCP bridge, by default 127.0.0.1:9876.
@@ -18,11 +18,11 @@ The connector is not a hosted generation model. It does not bundle an AI model, 
 
 Blender 5.2 is the currently tested release target. Node.js 20+ and a client capable of local stdio MCP are required. Enable the separate Blender addon and start the local bridge. Import the MCPB bundle in a supported client, or build the source and register the built entry point. Keep one process running for the session.
 
-- [Installation and troubleshooting](https://ker102.github.io/vipermesh-blender/setup/index.md)
-- [Client configuration](https://github.com/Ker102/vipermesh-blender/blob/main/docs/client-setup.md)
-- [Release bundles](https://github.com/Ker102/vipermesh-blender/releases)
-- [Connector manual](https://github.com/Ker102/vipermesh-blender/blob/main/docs/portable-blender-mcp.md)
-- [Agent skill](https://github.com/Ker102/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md)
-- [Security boundary](https://github.com/Ker102/vipermesh-blender/blob/main/SECURITY.md)
-- [Illustrated overview](https://ker102.github.io/vipermesh-blender/#overview)
-- [Harness Library](https://kaelux-labs.github.io/harness-library/harnesses/vipermesh-blender/)
+- [Installation and troubleshooting](https://openrootdev.github.io/vipermesh-blender/setup/index.md)
+- [Client configuration](https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/client-setup.md)
+- [Release bundles](https://github.com/OpenRootdev/vipermesh-blender/releases)
+- [Connector manual](https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/portable-blender-mcp.md)
+- [Agent skill](https://github.com/OpenRootdev/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md)
+- [Security boundary](https://github.com/OpenRootdev/vipermesh-blender/blob/main/SECURITY.md)
+- [Illustrated overview](https://openrootdev.github.io/vipermesh-blender/#overview)
+- [Harness Library](https://openrootdev.github.io/harness-library/harnesses/vipermesh-blender/)

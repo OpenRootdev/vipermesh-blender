@@ -6,23 +6,23 @@
 > Ready-made Blender actions reduce generated code for covered tasks, while
 > scene checks help the assistant inspect and repair its work.
 
-Canonical repository: https://github.com/Ker102/vipermesh-blender
-Project overview: https://ker102.github.io/vipermesh-blender/
+Canonical repository: https://github.com/OpenRootdev/vipermesh-blender
+Project overview: https://openrootdev.github.io/vipermesh-blender/
 License: MIT
 Runtime: Node.js 20+ and Blender
 Transport: MCP over stdio, then a loopback TCP bridge to Blender
 
 ## Primary documentation
 
-- Installation and troubleshooting: https://ker102.github.io/vipermesh-blender/setup/index.md
-- Plain-language overview: https://ker102.github.io/vipermesh-blender/index.md
+- Installation and troubleshooting: https://openrootdev.github.io/vipermesh-blender/setup/index.md
+- Plain-language overview: https://openrootdev.github.io/vipermesh-blender/index.md
 
-- README: https://github.com/Ker102/vipermesh-blender#readme
-- Connector manual: https://github.com/Ker102/vipermesh-blender/blob/main/docs/portable-blender-mcp.md
-- MCP client setup: https://github.com/Ker102/vipermesh-blender/blob/main/docs/client-setup.md
-- Agent skill: https://github.com/Ker102/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md
-- Security boundary: https://github.com/Ker102/vipermesh-blender/blob/main/SECURITY.md
-- Releases: https://github.com/Ker102/vipermesh-blender/releases
+- README: https://github.com/OpenRootdev/vipermesh-blender#readme
+- Connector manual: https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/portable-blender-mcp.md
+- MCP client setup: https://github.com/OpenRootdev/vipermesh-blender/blob/main/docs/client-setup.md
+- Agent skill: https://github.com/OpenRootdev/vipermesh-blender/blob/main/skills/using-vipermesh-blender/SKILL.md
+- Security boundary: https://github.com/OpenRootdev/vipermesh-blender/blob/main/SECURITY.md
+- Releases: https://github.com/OpenRootdev/vipermesh-blender/releases
 
 ## Key facts
 

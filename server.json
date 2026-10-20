@@ -5,14 +5,14 @@
   "description": "Free Blender MCP addon for faster AI scene edits, fewer tokens and built-in scene checks.",
   "version": "1.3.0",
   "repository": {
-    "url": "https://github.com/Ker102/vipermesh-blender",
+    "url": "https://github.com/OpenRootdev/vipermesh-blender",
     "source": "github"
   },
-  "websiteUrl": "https://ker102.github.io/vipermesh-blender/",
+  "websiteUrl": "https://openrootdev.github.io/vipermesh-blender/",
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/Ker102/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb",
+      "identifier": "https://github.com/OpenRootdev/vipermesh-blender/releases/download/v1.3.0/vipermesh-blender-1.3.0.mcpb",
       "fileSha256": "45f8cee90540e9f906b8e817efb6fa0a1302f8dba515522dc3682d328a90206c",
       "transport": {
         "type": "stdio"

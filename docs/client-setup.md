@@ -21,7 +21,7 @@ Docker is not required for clients that support local stdio MCP servers.
 Clone, install, and build the repository:
 
 ```bash
-git clone https://github.com/Ker102/vipermesh-blender.git
+git clone https://github.com/OpenRootdev/vipermesh-blender.git
 cd vipermesh-blender
 npm install
 npm run build

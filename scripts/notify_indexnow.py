@@ -11,7 +11,7 @@ from urllib.request import Request, urlopen
 from xml.etree import ElementTree as ET
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
-SITE = 'https://ker102.github.io/vipermesh-blender/'
+SITE = 'https://openrootdev.github.io/vipermesh-blender/'
 
 ENDPOINT = 'https://api.indexnow.org/indexnow'
 KEY_FILE = 'indexnow-key.txt'
