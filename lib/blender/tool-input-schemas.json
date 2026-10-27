@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "signatureSha256": "5b570216928a71ebdf760c7e86a48c5deccce5ce10e8da451630663f88dbc9ff",
+  "signatureSha256": "a365a6a87f93958826a970d24537f1f52b2a7a510e68192e0690455681ff87d4",
   "tools": {
     "add_camera": {
       "type": "object",
@@ -2850,6 +2850,41 @@
       "required": [],
       "additionalProperties": false
     },
+    "get_geometry_nodes_inputs": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "modifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "include_defaults": {
+          "type": "boolean"
+        },
+        "panel": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
     "get_local_asset_library_status": {
       "type": "object",
       "properties": {},
@@ -3284,6 +3319,37 @@
       "required": [],
       "additionalProperties": false
     },
+    "inspect_node_group": {
+      "type": "object",
+      "properties": {
+        "node_group_name": {
+          "type": "string"
+        },
+        "include_nodes": {
+          "type": "boolean"
+        },
+        "include_links": {
+          "type": "boolean"
+        },
+        "max_nodes": {
+          "type": "integer"
+        },
+        "node_filter": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "node_group_name"
+      ],
+      "additionalProperties": false
+    },
     "inspect_pose_deformation": {
       "type": "object",
       "properties": {
@@ -3700,6 +3766,24 @@
         }
       },
       "required": [],
+      "additionalProperties": false
+    },
+    "open_blend_file": {
+      "type": "object",
+      "properties": {
+        "filepath": {
+          "type": "string"
+        },
+        "discard_unsaved": {
+          "type": "boolean"
+        },
+        "load_ui": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "filepath"
+      ],
       "additionalProperties": false
     },
     "organize_collection_hierarchy": {
@@ -4720,6 +4804,49 @@
           "anyOf": [
             {
               "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "set_geometry_nodes_inputs": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "values": {
+          "anyOf": [
+            {
+              "type": "object",
+              "description": "Socket name or identifier -> value. Menu inputs take the item name; Object/Collection/Material/Image inputs take the datablock name."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "modifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "node_group": {
+          "anyOf": [
+            {
+              "type": "string"
             },
             {
               "type": "null"

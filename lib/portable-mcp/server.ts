@@ -1,8 +1,9 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
 import { z } from "zod"
 
-import type { PortableMcpService } from "./service"
-import { readPreviewImage } from "./preview"
+import type { McpResponse } from "../mcp/types"
+import { responseSucceeded, type PortableMcpService } from "./service"
+import { MAX_PREVIEW_IMAGE_BYTES, readPreviewImage } from "./preview"
 import {
   VIPERMESH_CONNECTOR_MANUAL,
   VIPERMESH_CONNECTOR_MANUAL_URI,
@@ -27,11 +28,47 @@ function structuredResult(result: Record<string, unknown>) {
     content: [
       {
         type: "text" as const,
-        text: JSON.stringify(result, null, 2),
+        // Compact on purpose: indentation alone was ~30% of every tool result's tokens.
+        text: JSON.stringify(result),
       },
     ],
     structuredContent: result,
   }
+}
+
+type ImageContent = { type: "image"; mimeType: string; data: string }
+
+/** Path params whose file is the tool's visual output; attached as image content so agents never read base64 text. */
+const IMAGE_PATH_PARAMS: Record<string, string> = {
+  inspect_render_artifact: "image_path",
+  render_image: "output_path",
+  render_thumbnail_to_path: "output_path",
+}
+/** Tools that report the written file in their result (the path param may be omitted or normalized). */
+const IMAGE_PATH_RESULTS: Record<string, string> = {
+  render_viewport_to_path: "output_path",
+  get_viewport_screenshot: "filepath",
+}
+
+async function toolImage(name: string, params: Record<string, unknown>, result: McpResponse) {
+  const visual = name in IMAGE_PATH_PARAMS || name in IMAGE_PATH_RESULTS
+  if (!visual) return { result }
+  if (!responseSucceeded(result)) return { result, visual }
+  const body = result.result && typeof result.result === "object" && !Array.isArray(result.result)
+    ? result.result as Record<string, unknown> : {}
+  if (name === "get_viewport_screenshot" && typeof body.image === "string") {
+    const { image, ...rest } = body
+    const fits = image.length * 0.75 <= MAX_PREVIEW_IMAGE_BYTES
+    const format = String(body.format ?? "png").toLowerCase()
+    const preview: ImageContent | undefined = fits
+      ? { type: "image", mimeType: format === "png" ? "image/png" : "image/jpeg", data: image } : undefined
+    const note = fits ? "attached as image content" : "omitted: over the preview size limit; pass filepath or a smaller max_size"
+    return { result: { ...result, result: { ...rest, image: note } }, preview, visual }
+  }
+  const path = name in IMAGE_PATH_RESULTS ? body[IMAGE_PATH_RESULTS[name]] ?? params[IMAGE_PATH_PARAMS[name] ?? ""]
+    : params[IMAGE_PATH_PARAMS[name]]
+  const preview = typeof path === "string" ? await readPreviewImage(path) : undefined
+  return { result, preview, visual }
 }
 
 function toolError(error: unknown) {
@@ -156,12 +193,15 @@ export function createPortableBlenderMcpServer(service: PortableMcpService) {
     },
     async ({ name, params }) => {
       try {
-        const result = await service.callBlenderTool(name, params)
-        const imagePath = name === "inspect_render_artifact" ? params.image_path
-          : name === "render_image" || name === "render_thumbnail_to_path" ? params.output_path : undefined
-        const preview = result.status === "success" && typeof imagePath === "string" ? await readPreviewImage(imagePath) : undefined
-        const response = structuredResult({ ...result, ...(imagePath ? { visualReviewRequired: true, imageAttached: !!preview } : {}) })
-        return { ...response, content: [...response.content, ...(preview ? [preview] : [])] }
+        const raw = await service.callBlenderTool(name, params)
+        const { result, preview, visual } = await toolImage(name, params, raw)
+        const response = structuredResult({ ...result, ...(visual ? { visualReviewRequired: true, imageAttached: !!preview } : {}) })
+        return {
+          ...response,
+          content: [...response.content, ...(preview ? [preview] : [])],
+          // Blender-side failures (exceptions, {"error": ...} results) must be visible to clients that only read isError.
+          ...(responseSucceeded(raw) ? {} : { isError: true }),
+        }
       } catch (error) {
         return toolError(error)
       }
@@ -184,7 +224,9 @@ export function createPortableBlenderMcpServer(service: PortableMcpService) {
     },
     async (input) => {
       try {
-        return structuredResult(await service.callBlenderToolBatch(input))
+        const batch = await service.callBlenderToolBatch(input)
+        const failed = batch.results.some((item) => !responseSucceeded(item.response))
+        return { ...structuredResult(batch), ...(failed ? { isError: true } : {}) }
       } catch (error) {
         return toolError(error)
       }

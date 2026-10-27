@@ -76,7 +76,7 @@ export interface BlenderSceneWorkflowInput {
   groundingTolerance?: number
 }
 
-function responseSucceeded(response: McpResponse) {
+export function responseSucceeded(response: McpResponse) {
   if (response.status !== "success" && response.status !== "ok") return false
   return !(
     response.result &&
@@ -84,6 +84,41 @@ function responseSucceeded(response: McpResponse) {
     !Array.isArray(response.result) &&
     "error" in response.result
   )
+}
+
+/** The client keeps `raw` (the whole socket payload) for internal diagnostics; agents never need a second copy. */
+function leanResponse(response: McpResponse): McpResponse {
+  const { raw: _raw, ...rest } = response
+  return rest as McpResponse
+}
+
+const TOOL_WORDS = /[a-z0-9]+/g
+
+/** Word-level tool ranking: every query word must hit a word of the tool; name hits outrank description hits. */
+function rankTools<T extends { name: string; description: string; parameters?: string }>(tools: T[], query: string) {
+  const terms = [...new Set(query.toLowerCase().match(TOOL_WORDS) ?? [])]
+  if (!terms.length) return tools
+  const scored = tools.map((tool) => {
+    const nameWords: string[] = tool.name.toLowerCase().match(TOOL_WORDS) ?? []
+    const textWords: string[] = `${tool.description} ${tool.parameters ?? ""}`.toLowerCase().match(TOOL_WORDS) ?? []
+    let matched = 0
+    let score = 0
+    for (const term of terms) {
+      const best = Math.max(
+        nameWords.includes(term) ? 6 : nameWords.some((word) => word.startsWith(term)) ? 4 : 0,
+        textWords.includes(term) ? 2 : textWords.some((word) => word.startsWith(term)) ? 1 : 0,
+      )
+      if (best) matched += 1
+      score += best
+    }
+    return { tool, matched, score }
+  }).filter((entry) => entry.matched > 0)
+  // Prefer tools matching every word; fall back to the best partial matches rather than returning nothing.
+  const topMatched = Math.max(0, ...scored.map((entry) => entry.matched))
+  return scored
+    .filter((entry) => entry.matched === topMatched)
+    .sort((a, b) => b.score - a.score || a.tool.name.localeCompare(b.tool.name))
+    .map((entry) => entry.tool)
 }
 
 function sanitizedError(error: unknown, fallback: string) {
@@ -127,7 +162,7 @@ export function createPortableMcpService(
       params = await dependencies.authorizeCapabilityInvocation(params)
     }
     try {
-      return await client().execute({ type: name, params })
+      return leanResponse(await client().execute({ type: name, params }))
     } catch (error) {
       throw new Error(sanitizedError(error, `Blender tool call failed: ${name}`))
     }
@@ -195,14 +230,9 @@ export function createPortableMcpService(
     listBlenderTools(input: ListBlenderToolsInput = {}) {
       const category = input.category?.trim().toLowerCase()
       const query = input.query?.trim().toLowerCase()
-      const tools = listPortableBlenderTools().filter((tool) => {
-        if (category && tool.category.toLowerCase() !== category) return false
-        if (!query) return true
-
-        return `${tool.name} ${tool.description} ${tool.parameters ?? ""}`
-          .toLowerCase()
-          .includes(query)
-      }).map(tool => input.includeSchemas
+      const inCategory = listPortableBlenderTools().filter((tool) =>
+        !category || tool.category.toLowerCase() === category)
+      const tools = (query ? rankTools(inCategory, query) : inCategory).map(tool => input.includeSchemas
         ? { ...tool, inputSchema: getInputSchema(tool.name) } : tool)
 
       return {

@@ -35,6 +35,8 @@ VECTOR_FIELDS = set("location rotation scale dimensions target_location offset t
 NUMBER_FIELDS = set("metallic roughness energy lens sensor_width clip_start clip_end size radius width height depth margin tolerance surface_value distance strength ratio voxel_size angle_limit contact_tolerance minimum_clearance dof_focus_distance dof_aperture_fstop".split())
 NUMBER_FIELDS.update("influence spacing row_spacing align_bottom_to_z seam_tolerance alpha emission_strength transmission_weight ior cut_depth frame_depth target_ratio target_edge_length bevel_depth display_size shadow_soft_size spot_size spot_blend slider_min slider_max fps_base angle".split())
 VECTOR_FIELDS.update("obj_local_point reference_local_point".split())
+STRING_FIELDS.update("node_group node_group_name panel node_filter".split())
+INTEGER_FIELDS.update("max_nodes".split())
 
 
 def vector(size=3):
@@ -75,6 +77,7 @@ OVERRIDES = {
     ("create_mesh_from_data", "edges"): {"type": "array", "items": {"type": "array", "items": {"type": "integer"}, "minItems": 2, "maxItems": 2}},
     ("set_shape_key_value", "value"): {"type": "number"},
     ("retarget_animation_clip", "bone_map"): {"type": "object"},
+    ("set_geometry_nodes_inputs", "values"): {"type": "object", "description": "Socket name or identifier -> value. Menu inputs take the item name; Object/Collection/Material/Image inputs take the datablock name."},
 }
 
 # Blender normalizes case and accepts aliases. Examples must not reject those.

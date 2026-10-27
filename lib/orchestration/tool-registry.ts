@@ -79,6 +79,13 @@ export const TOOL_REGISTRY: ToolMetadata[] = [
     parameters: "checkpoint_filepath: string (.blend), original_filepath: string (.blend)",
   },
   {
+    name: "open_blend_file",
+    description:
+      "Open an existing .blend file as the current session file. Refuses when the current file has unsaved changes unless discard_unsaved=true.",
+    category: "advanced",
+    parameters: "filepath: string (.blend), discard_unsaved?: boolean, load_ui?: boolean",
+  },
+  {
     name: "get_viewport_screenshot",
     description:
       "Capture a 3D viewport for visual confirmation. Supports area_index from inspect_viewport_areas for area-specific screenshots.",
@@ -860,6 +867,27 @@ export const TOOL_REGISTRY: ToolMetadata[] = [
     category: "geometry",
     parameters:
       "name: string, modifier: string, show_viewport?: boolean, show_render?: boolean, show_in_editmode?: boolean, show_on_cage?: boolean, move_to_index?: number",
+  },
+  {
+    name: "get_geometry_nodes_inputs",
+    description:
+      "List a Geometry Nodes modifier's inputs: name, identifier, type, panel, current value (datablocks by name), menu items, attribute bindings; include_defaults adds default/min/max.",
+    category: "geometry",
+    parameters: "name: string, modifier?: string (required when the object has several Geometry Nodes modifiers), include_defaults?: boolean, panel?: string (panel path prefix filter)",
+  },
+  {
+    name: "set_geometry_nodes_inputs",
+    description:
+      "Assign a geometry node group to a Geometry Nodes modifier and/or set its inputs by socket name or identifier. Menu inputs take item names; Object/Collection/Material/Image inputs take datablock names. Reports per-input errors.",
+    category: "geometry",
+    parameters: "name: string, values?: object (socket name|identifier -> value), modifier?: string, node_group?: string",
+  },
+  {
+    name: "inspect_node_group",
+    description:
+      "Summarize a node group (geometry, shader or compositor): interface sockets with defaults, node type counts, nested groups, users; optionally nodes with unlinked input values and links, filtered by node_filter and capped by max_nodes.",
+    category: "inspection",
+    parameters: "node_group_name: string, include_nodes?: boolean, include_links?: boolean, max_nodes?: number, node_filter?: string",
   },
   {
     name: "configure_constraint",

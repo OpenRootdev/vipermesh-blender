@@ -63,6 +63,9 @@ class BlenderMCPServer:
         self.clients_lock = threading.Lock()
         self.last_error = ""
         self.background = bool(bpy.app.background)
+        # Data-API edits made through the bridge never set bpy.data.is_dirty,
+        # so the bridge counts its own mutating calls since the last load/save.
+        self.bridge_edits = 0
         self.pending = queue.Queue(maxsize=128)
         self.last_activity = time.monotonic()
         self._timer_callback = self._drain_gui_commands
@@ -354,6 +357,10 @@ class BlenderMCPServer:
             "execute_code": self.execute_code,
             "save_blend_file": self.save_blend_file,
             "restore_blend_checkpoint": self.restore_blend_checkpoint,
+            "open_blend_file": self.open_blend_file,
+            "get_geometry_nodes_inputs": self.get_geometry_nodes_inputs,
+            "set_geometry_nodes_inputs": self.set_geometry_nodes_inputs,
+            "inspect_node_group": self.inspect_node_group,
             "list_materials": self.list_materials,
             "delete_object": self.delete_object,
             "delete_objects": self.delete_objects,
@@ -498,6 +505,7 @@ class BlenderMCPServer:
                 print(f"Executing handler for {cmd_type}")
                 result = handler(**params)
                 print(f"Handler execution complete")
+                self._track_bridge_edit(cmd_type, params, result)
                 return {"status": "success", "result": result}
             except Exception as e:
                 print(f"Error in handler: {str(e)}")
@@ -507,6 +515,18 @@ class BlenderMCPServer:
             return {"status": "error", "message": f"Unknown command type: {cmd_type}"}
 
 
+
+    READ_ONLY_PREFIXES = ("get_", "inspect_", "list_", "check_", "validate_", "search_",
+                          "compare_", "render_", "focus_", "select_")
+
+    def _track_bridge_edit(self, cmd_type, params, result):
+        succeeded = isinstance(result, dict) and result.get("success") and "error" not in result
+        if cmd_type in ("open_blend_file", "restore_blend_checkpoint") or (
+                cmd_type == "save_blend_file" and not params.get("copy")):
+            if succeeded:
+                self.bridge_edits = 0
+        elif not cmd_type.startswith(self.READ_ONLY_PREFIXES):
+            self.bridge_edits += 1
 
     def get_scene_info(self):
         """Get information about the current Blender scene"""
@@ -1476,7 +1496,15 @@ class BlenderMCPServer:
             captured_output = capture_buffer.getvalue()
             return {"executed": True, "result": captured_output}
         except Exception as e:
-            raise Exception(f"Code execution error: {str(e)}")
+            # Point at the failing line of the submitted code and keep any output printed before the failure.
+            line = getattr(e, "lineno", None) if isinstance(e, SyntaxError) else None
+            if line is None:
+                frames = [f for f in traceback.extract_tb(e.__traceback__) if f.filename == "<string>"]
+                line = frames[-1].lineno if frames else None
+            where = f" (line {line})" if line else ""
+            printed = capture_buffer.getvalue()[-2000:]
+            tail = f"; output before error: {printed}" if printed.strip() else ""
+            raise Exception(f"Code execution error{where}: {type(e).__name__}: {str(e)}{tail}")
 
     def save_blend_file(self, filepath, make_dirs=True, check_existing=False, copy=False):
         """Save the current .blend file to an explicit path."""
@@ -1548,6 +1576,260 @@ class BlenderMCPServer:
                 "error": f"Failed to restore blend checkpoint: {str(e)}",
                 "restored": False,
             }
+
+    def open_blend_file(self, filepath, discard_unsaved=False, load_ui=False):
+        """Open an existing .blend file as the current session file."""
+        try:
+            if not filepath or not str(filepath).strip():
+                return {"error": "filepath must be provided"}
+            resolved_path = os.path.abspath(os.path.expanduser(str(filepath)))
+            if not resolved_path.lower().endswith(".blend"):
+                return {"error": "filepath must end with .blend"}
+            if not os.path.isfile(resolved_path):
+                return {"error": f"File does not exist: {resolved_path}"}
+            edits = getattr(self, "bridge_edits", 0)
+            if (bool(getattr(bpy.data, "is_dirty", False)) or edits) and not discard_unsaved:
+                return {
+                    "error": "Current file has unsaved changes; save_blend_file first or pass discard_unsaved=true",
+                    "current_filepath": bpy.data.filepath,
+                    "bridge_edits_since_save": edits,
+                }
+            previous = bpy.data.filepath
+            bpy.ops.wm.open_mainfile(filepath=resolved_path, load_ui=bool(load_ui))
+            scene = bpy.context.scene
+            return {
+                "success": True,
+                "filepath": bpy.data.filepath,
+                "previous_filepath": previous,
+                "scene": scene.name if scene else None,
+                "scenes": [s.name for s in bpy.data.scenes],
+                "object_count": len(bpy.data.objects),
+                "node_group_count": len(bpy.data.node_groups),
+                "next_safe_action": "call get_scene_info for an overview before editing",
+            }
+        except Exception as e:
+            return {"error": f"Failed to open blend file: {str(e)}"}
+
+    @staticmethod
+    def _gn_value(value):
+        """JSON-safe socket value: datablocks by name, vectors/colors as rounded lists."""
+        if value is None or isinstance(value, (bool, int, str)):
+            return value
+        if isinstance(value, float):
+            return round(value, 6)
+        if isinstance(value, bpy.types.ID):
+            return value.name
+        try:
+            return [round(float(v), 6) for v in value]
+        except Exception:
+            return str(value)
+
+    @staticmethod
+    def _gn_input_sockets(node_group):
+        """(socket, panel path) for every group INPUT socket in interface order."""
+        sockets = []
+        for item in node_group.interface.items_tree:
+            if item.item_type != "SOCKET" or item.in_out != "INPUT":
+                continue
+            panel, parts = getattr(item, "parent", None), []
+            while panel is not None and getattr(panel, "name", ""):
+                parts.insert(0, panel.name)
+                panel = getattr(panel, "parent", None)
+            sockets.append((item, "/".join(parts)))
+        return sockets
+
+    @staticmethod
+    def _gn_modifier_input(mod, identifier):
+        """Blender 5.x exposes inputs on mod.properties.inputs; 4.x stores them as ID properties."""
+        inputs = getattr(getattr(mod, "properties", None), "inputs", None)
+        if inputs is not None:
+            return getattr(inputs, identifier, None)
+        return None
+
+    def _gn_get_modifier(self, name, modifier):
+        obj = bpy.data.objects.get(name)
+        if not obj:
+            return None, None, {"error": f"Object not found: {name}"}
+        nodes_mods = [m for m in obj.modifiers if m.type == "NODES"]
+        if modifier:
+            mod = obj.modifiers.get(modifier)
+            if not mod or mod.type != "NODES":
+                return obj, None, {"error": f"Geometry Nodes modifier '{modifier}' not found on '{name}'. Available: {[m.name for m in nodes_mods]}"}
+        elif len(nodes_mods) == 1:
+            mod = nodes_mods[0]
+        else:
+            return obj, None, {"error": f"'{name}' has {len(nodes_mods)} Geometry Nodes modifiers; pass modifier. Available: {[m.name for m in nodes_mods]}"}
+        return obj, mod, None
+
+    def get_geometry_nodes_inputs(self, name, modifier=None, include_defaults=False, panel=None):
+        """List a Geometry Nodes modifier's inputs with current values, types, ranges and menu items."""
+        try:
+            obj, mod, error = self._gn_get_modifier(name, modifier)
+            if error:
+                return error
+            ng = mod.node_group
+            if ng is None:
+                return {"object": obj.name, "modifier": mod.name, "node_group": None, "inputs": [],
+                        "next_safe_action": "assign a node group with set_geometry_nodes_inputs(node_group=...)"}
+            rows = []
+            for sock, path in self._gn_input_sockets(ng):
+                if panel and not path.lower().startswith(str(panel).lower()):
+                    continue
+                if sock.socket_type == "NodeSocketGeometry":
+                    continue
+                row = {"name": sock.name, "id": sock.identifier, "type": sock.socket_type.replace("NodeSocket", "")}
+                if path:
+                    row["panel"] = path
+                item = self._gn_modifier_input(mod, sock.identifier)
+                if item is not None and hasattr(item, "value"):
+                    row["value"] = self._gn_value(item.value)
+                    if getattr(item, "type", None) not in (None, "SINGLE", "VALUE"):
+                        row["input_type"] = item.type
+                        if getattr(item, "attribute_name", ""):
+                            row["attribute"] = item.attribute_name
+                    if sock.socket_type == "NodeSocketMenu":
+                        with suppress(Exception):
+                            row["items"] = [e.identifier for e in item.bl_rna.properties["value"].enum_items]
+                else:
+                    with suppress(Exception):
+                        row["value"] = self._gn_value(mod[sock.identifier])
+                if include_defaults:
+                    for attr, key in (("default_value", "default"), ("min_value", "min"), ("max_value", "max")):
+                        if hasattr(sock, attr):
+                            row[key] = self._gn_value(getattr(sock, attr))
+                rows.append(row)
+            return {"object": obj.name, "modifier": mod.name, "node_group": ng.name, "count": len(rows), "inputs": rows}
+        except Exception as e:
+            return {"error": f"Failed to read Geometry Nodes inputs: {str(e)}"}
+
+    def set_geometry_nodes_inputs(self, name, values=None, modifier=None, node_group=None):
+        """Assign a node group and/or set Geometry Nodes modifier inputs by socket name or identifier."""
+        try:
+            obj, mod, error = self._gn_get_modifier(name, modifier)
+            if error:
+                return error
+            changes, errors = [], []
+            if node_group:
+                ng = bpy.data.node_groups.get(node_group)
+                if ng is None or getattr(ng, "bl_idname", "") != "GeometryNodeTree":
+                    available = [g.name for g in bpy.data.node_groups if g.bl_idname == "GeometryNodeTree"]
+                    return {"error": f"Geometry node group not found: {node_group}. Available: {available[:40]}"}
+                mod.node_group = ng
+                changes.append({"node_group": ng.name})
+            ng = mod.node_group
+            if values and ng is None:
+                return {"error": "Modifier has no node group; pass node_group"}
+            if values is not None and not isinstance(values, dict):
+                return {"error": "values must be an object mapping socket name or identifier to value"}
+            sockets = self._gn_input_sockets(ng) if ng else []
+            by_id = {s.identifier: s for s, _ in sockets}
+            by_name = {}
+            for s, _ in sockets:
+                by_name.setdefault(s.name, []).append(s)
+            id_collections = {
+                "NodeSocketObject": bpy.data.objects, "NodeSocketCollection": bpy.data.collections,
+                "NodeSocketMaterial": bpy.data.materials, "NodeSocketImage": bpy.data.images,
+                "NodeSocketTexture": bpy.data.textures,
+            }
+            for key, value in (values or {}).items():
+                sock = by_id.get(key)
+                if sock is None:
+                    matches = by_name.get(key, [])
+                    if len(matches) > 1:
+                        errors.append({"input": key, "error": f"ambiguous name; use one of {[m.identifier for m in matches]}"})
+                        continue
+                    sock = matches[0] if matches else None
+                if sock is None:
+                    errors.append({"input": key, "error": "no such input", "available": [s.name for s, _ in sockets][:60]})
+                    continue
+                try:
+                    if sock.socket_type in id_collections and value is not None:
+                        datablock = id_collections[sock.socket_type].get(str(value))
+                        if datablock is None:
+                            raise ValueError(f"{sock.socket_type.replace('NodeSocket', '')} not found: {value}")
+                        value = datablock
+                    item = self._gn_modifier_input(mod, sock.identifier)
+                    if item is not None and hasattr(item, "value"):
+                        if sock.socket_type == "NodeSocketMenu":
+                            options = [e.identifier for e in item.bl_rna.properties["value"].enum_items]
+                            if options and value not in options:
+                                raise ValueError(f"menu item must be one of {options}")
+                        item.value = value
+                        stored = item.value
+                    else:
+                        mod[sock.identifier] = value
+                        stored = mod[sock.identifier]
+                    changes.append({"input": sock.name, "id": sock.identifier, "value": self._gn_value(stored)})
+                except Exception as e:
+                    errors.append({"input": sock.name, "id": sock.identifier, "error": str(e)})
+            obj.update_tag()
+            with suppress(Exception):
+                bpy.context.view_layer.update()
+            result = {"object": obj.name, "modifier": mod.name, "node_group": ng.name if ng else None,
+                      "changes": changes, "success": not errors}
+            if errors:
+                result["error"] = f"{len(errors)} input(s) not set"
+                result["errors"] = errors
+            return result
+        except Exception as e:
+            return {"error": f"Failed to set Geometry Nodes inputs: {str(e)}"}
+
+    def inspect_node_group(self, node_group_name, include_nodes=True, include_links=False, max_nodes=150, node_filter=None):
+        """Summarize a node group: interface sockets, node type counts, nested groups, and optionally nodes and links."""
+        try:
+            ng = bpy.data.node_groups.get(node_group_name)
+            if ng is None:
+                return {"error": f"Node group not found: {node_group_name}. Available: {[g.name for g in bpy.data.node_groups][:40]}"}
+            interface = []
+            for item in ng.interface.items_tree:
+                if item.item_type == "PANEL":
+                    interface.append({"panel": item.name})
+                    continue
+                row = {"io": item.in_out.lower(), "name": item.name, "id": item.identifier,
+                       "type": item.socket_type.replace("NodeSocket", "")}
+                if item.in_out == "INPUT" and hasattr(item, "default_value"):
+                    row["default"] = self._gn_value(item.default_value)
+                interface.append(row)
+            type_counts = {}
+            for node in ng.nodes:
+                type_counts[node.bl_idname] = type_counts.get(node.bl_idname, 0) + 1
+            nested = sorted({n.node_tree.name for n in ng.nodes if getattr(n, "node_tree", None)})
+            users = [o.name for o in bpy.data.objects
+                     if any(m.type == "NODES" and m.node_group == ng for m in o.modifiers)]
+            result = {
+                "name": ng.name, "type": ng.bl_idname, "description": getattr(ng, "description", ""),
+                "node_count": len(ng.nodes), "link_count": len(ng.links),
+                "interface": interface, "node_type_counts": dict(sorted(type_counts.items(), key=lambda kv: -kv[1])),
+                "nested_groups": nested, "used_by_objects": users[:50],
+            }
+            needle = str(node_filter).lower() if node_filter else None
+            if include_nodes:
+                nodes = [n for n in ng.nodes if not needle or needle in n.name.lower()
+                         or needle in n.bl_idname.lower() or needle in (n.label or "").lower()]
+                rows = []
+                for n in nodes[:max(0, int(max_nodes))]:
+                    row = {"name": n.name, "type": n.bl_idname}
+                    if n.label:
+                        row["label"] = n.label
+                    if getattr(n, "node_tree", None):
+                        row["group"] = n.node_tree.name
+                    if n.mute:
+                        row["muted"] = True
+                    unlinked = {s.name: self._gn_value(s.default_value) for s in n.inputs
+                                if not s.is_linked and hasattr(s, "default_value") and s.enabled}
+                    if unlinked:
+                        row["inputs"] = unlinked
+                    rows.append(row)
+                result["nodes"] = rows
+                result["nodes_truncated"] = len(nodes) > len(rows)
+            if include_links:
+                links = [[l.from_node.name, l.from_socket.name, l.to_node.name, l.to_socket.name] for l in ng.links
+                         if not needle or needle in l.from_node.name.lower() or needle in l.to_node.name.lower()]
+                result["links"] = links[:max(0, int(max_nodes)) * 2]
+                result["links_truncated"] = len(links) > len(result["links"])
+            return result
+        except Exception as e:
+            return {"error": f"Failed to inspect node group: {str(e)}"}
 
     def list_materials(self):
         """List all materials in the .blend file with their node counts and linked objects"""
