@@ -4,6 +4,16 @@ All notable changes to ViperMesh for Blender are documented here.
 
 ## [Unreleased]
 
+### Fixed
+
+- Viewport captures (`get_viewport_screenshot`, `render_viewport_to_path`) use a
+  viewport render instead of a screen grab: no splash screen or popups in the
+  image, and EEVEE shaders finish compiling first. Results name the
+  `capture_method`; a screen-grab fallback is reported in `warnings`.
+- Studio thumbnails and `setup_studio_scene` pull the camera back until every
+  target fits the frame (a row of objects was cropped at the edges). The result
+  reports `camera.framing`.
+
 ## [1.3.0] - 2026-10-07
 
 ### Added
