@@ -40,8 +40,8 @@ ViperMesh for Blender は、対応する AI アシスタントが Blender のシ
 
 [![ViperMesh for Blender の紹介を見る](../../../site/assets/connector-overview-poster.png)](https://openrootdev.github.io/vipermesh-blender/#overview)
 
-[72 秒の動画を見る](https://openrootdev.github.io/vipermesh-blender/#overview)、または [MP4 をダウンロード](https://openrootdev.github.io/vipermesh-blender/assets/connector-overview.mp4)できます。
-AI クライアントが用意された Blender 操作をどう使うか、生成するコードを減らすことがなぜ役立つか、始めるには何が必要かを紹介します。これは音声のない図解による紹介であり、時間計測付きのベンチマーク録画ではありません。GitHub の README から再生可能な動画にリンクしています。
+[77 秒の動画を見る](https://openrootdev.github.io/vipermesh-blender/#overview)、または [MP4 をダウンロード](https://openrootdev.github.io/vipermesh-blender/assets/connector-overview.mp4)できます。
+AI クライアントが用意された Blender 操作をどう使うか、生成するコードを減らすことがなぜ役立つか、始めるには何が必要かを紹介します。これは音楽付きの図解による紹介であり、時間計測付きのベンチマーク録画ではありません。GitHub の README から再生可能な動画にリンクしています。
 
 <a id="why-vipermesh-for-blender"></a>
 ## ViperMesh for Blender を使う理由

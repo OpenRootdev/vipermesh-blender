@@ -45,11 +45,11 @@ und entscheidest, wobei der Assistent helfen soll.
 
 [![Übersicht zu ViperMesh for Blender ansehen](../../../site/assets/connector-overview-poster.png)](https://openrootdev.github.io/vipermesh-blender/#overview)
 
-[Sieh dir das 72-Sekunden-Video an](https://openrootdev.github.io/vipermesh-blender/#overview)
+[Sieh dir das 77-Sekunden-Video an](https://openrootdev.github.io/vipermesh-blender/#overview)
 oder [lade die MP4 herunter](https://openrootdev.github.io/vipermesh-blender/assets/connector-overview.mp4).
 Sieh, wie dein KI-Client fertige Blender-Aktionen verwendet, warum weniger
-generierter Code helfen kann und wie du loslegst. Dies ist eine stille
-illustrierte Übersicht, keine zeitlich gemessene Benchmark-Aufzeichnung. GitHubs
+generierter Code helfen kann und wie du loslegst. Dies ist eine
+illustrierte Übersicht mit Musik, keine zeitlich gemessene Benchmark-Aufzeichnung. GitHubs
 README verlinkt auf das abspielbare Video.
 
 <a id="why-vipermesh-for-blender"></a>

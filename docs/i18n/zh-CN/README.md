@@ -40,9 +40,9 @@ ViperMesh for Blender 是一个免费的开源 **Blender MCP server and addon**�
 
 [![观看 ViperMesh for Blender 概览](../../../site/assets/connector-overview-poster.png)](https://openrootdev.github.io/vipermesh-blender/#overview)
 
-[观看 72 秒视频](https://openrootdev.github.io/vipermesh-blender/#overview)
+[观看 77 秒视频](https://openrootdev.github.io/vipermesh-blender/#overview)
 或[下载 MP4](https://openrootdev.github.io/vipermesh-blender/assets/connector-overview.mp4)。
-了解你的 AI 客户端如何使用现成的 Blender 操作、为什么更少的生成代码会有帮助，以及如何开始。这是一段无声图示概览，不是计时基准录制。GitHub 的 README 会链接到可播放视频。
+了解你的 AI 客户端如何使用现成的 Blender 操作、为什么更少的生成代码会有帮助，以及如何开始。这是一段配乐图示概览，不是计时基准录制。GitHub 的 README 会链接到可播放视频。
 
 <a id="why-vipermesh-for-blender"></a>
 ## 为什么选择 ViperMesh for Blender？

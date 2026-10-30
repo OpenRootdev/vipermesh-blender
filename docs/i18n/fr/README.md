@@ -48,11 +48,11 @@ que vous voulez que l'assistant vous aide à faire.
 
 [![Regarder la présentation de ViperMesh for Blender](../../../site/assets/connector-overview-poster.png)](https://openrootdev.github.io/vipermesh-blender/#overview)
 
-[Regarder la vidéo de 72 secondes](https://openrootdev.github.io/vipermesh-blender/#overview)
+[Regarder la vidéo de 77 secondes](https://openrootdev.github.io/vipermesh-blender/#overview)
 ou [télécharger le MP4](https://openrootdev.github.io/vipermesh-blender/assets/connector-overview.mp4).
 Voyez comment votre client IA utilise des actions Blender prêtes à l'emploi,
 pourquoi moins de code généré peut aider, et comment commencer. C'est une
-présentation illustrée silencieuse, pas un enregistrement chronométré de
+présentation illustrée avec musique, pas un enregistrement chronométré de
 benchmark. Le README de GitHub renvoie vers la vidéo lisible.
 
 <a id="why-vipermesh-for-blender"></a>

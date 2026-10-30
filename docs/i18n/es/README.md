@@ -45,10 +45,10 @@ quieres que el asistente te ayude.
 
 [![Ver la descripción general de ViperMesh for Blender](../../../site/assets/connector-overview-poster.png)](https://openrootdev.github.io/vipermesh-blender/#overview)
 
-[Ve el video de 72 segundos](https://openrootdev.github.io/vipermesh-blender/#overview)
+[Ve el video de 77 segundos](https://openrootdev.github.io/vipermesh-blender/#overview)
 o [descarga el MP4](https://openrootdev.github.io/vipermesh-blender/assets/connector-overview.mp4).
 Muestra cómo tu cliente de IA usa acciones de Blender ya preparadas, por qué generar menos código
-puede ayudar y cómo empezar. Es una descripción general ilustrada y silenciosa, no una
+puede ayudar y cómo empezar. Es una descripción general ilustrada con música, no una
 grabación cronometrada de benchmark. Los enlaces del README de GitHub llevan al video reproducible.
 
 <a id="why-vipermesh-for-blender"></a>

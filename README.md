@@ -44,10 +44,10 @@ you want the assistant to help with.
 
 [![Watch the ViperMesh for Blender overview](site/assets/connector-overview-poster.png)](https://openrootdev.github.io/vipermesh-blender/#overview)
 
-[Watch the 72-second video](https://openrootdev.github.io/vipermesh-blender/#overview)
+[Watch the 77-second video](https://openrootdev.github.io/vipermesh-blender/#overview)
 or [download the MP4](https://openrootdev.github.io/vipermesh-blender/assets/connector-overview.mp4).
 See how your AI client uses ready-made Blender actions, why less generated code
-can help, and how to get started. This is a silent illustrated overview, not a
+can help, and how to get started. This is an illustrated overview with music, not a
 timed benchmark recording. GitHub's README links to the playable video.
 
 ## Why ViperMesh for Blender?

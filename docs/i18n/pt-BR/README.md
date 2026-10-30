@@ -47,10 +47,10 @@ assistente ajude.
 
 [![Assista à visão geral do ViperMesh for Blender](../../../site/assets/connector-overview-poster.png)](https://openrootdev.github.io/vipermesh-blender/#overview)
 
-[Assista ao vídeo de 72 segundos](https://openrootdev.github.io/vipermesh-blender/#overview)
+[Assista ao vídeo de 77 segundos](https://openrootdev.github.io/vipermesh-blender/#overview)
 ou [baixe o MP4](https://openrootdev.github.io/vipermesh-blender/assets/connector-overview.mp4).
 Veja como seu cliente de IA usa ações prontas do Blender, por que menos código
-gerado pode ajudar e como começar. Esta é uma visão geral ilustrada e silenciosa,
+gerado pode ajudar e como começar. Esta é uma visão geral ilustrada com música,
 não uma gravação cronometrada de benchmark. Os links do README no GitHub apontam
 para o vídeo reproduzível.
 
