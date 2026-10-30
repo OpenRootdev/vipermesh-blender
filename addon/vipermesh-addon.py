@@ -1236,6 +1236,41 @@ class BlenderMCPServer:
         except Exception as e:
             return {"error": f"Failed to focus viewport: {str(e)}"}
 
+    def _capture_view3d(self, area, region, space, filepath, max_size, fmt):
+        """Clean picture of a 3D view: a viewport render (the view's own shading,
+        angle and overlays, but no headers, popups or splash screen on top;
+        shader compilation finishes first) sized to the view. Falls back to a
+        screen grab of the area, which is reported as a warning."""
+        scene = bpy.context.scene
+        render = scene.render
+        settings = render.image_settings
+        saved = (render.resolution_x, render.resolution_y, render.resolution_percentage,
+                 settings.file_format)
+        width, height = max(int(region.width), 1), max(int(region.height), 1)
+        scale = min(1.0, float(max_size) / max(width, height))
+        file_format = {"JPG": "JPEG"}.get(str(fmt).upper(), str(fmt).upper())
+        try:
+            render.resolution_x = max(16, int(width * scale))
+            render.resolution_y = max(16, int(height * scale))
+            render.resolution_percentage = 100
+            settings.file_format = file_format
+            with bpy.context.temp_override(window=bpy.context.window, area=area, region=region,
+                                           space_data=space):
+                bpy.ops.render.opengl(write_still=False, view_context=True)
+            result_image = bpy.data.images.get("Render Result")
+            if result_image is None:
+                raise RuntimeError("no Render Result after the viewport render")
+            result_image.save_render(filepath, scene=scene)
+            return "viewport_render", []
+        except Exception as e:
+            with bpy.context.temp_override(area=area, region=region, space_data=space):
+                bpy.ops.screen.screenshot_area(filepath=filepath)
+            return "screen_grab", [f"viewport render failed ({e}); used a screen grab of the area, "
+                                   "which can show popups or a blank view while shaders compile"]
+        finally:
+            (render.resolution_x, render.resolution_y, render.resolution_percentage,
+             settings.file_format) = saved
+
     def get_viewport_screenshot(self, max_size=800, filepath=None, format="png", area_index=None):
         """
         Capture a screenshot of the current 3D viewport.
@@ -1266,9 +1301,8 @@ class BlenderMCPServer:
                 filepath = tmp.name
                 tmp.close()
 
-            # Take screenshot with proper context override
-            with bpy.context.temp_override(area=area, region=region, space_data=space):
-                bpy.ops.screen.screenshot_area(filepath=filepath)
+            capture_method, capture_warnings = self._capture_view3d(
+                area, region, space, filepath, max_size, format)
 
             # Load and resize if needed
             img = bpy.data.images.load(filepath)
@@ -1297,21 +1331,26 @@ class BlenderMCPServer:
                     os.remove(filepath)
                 except OSError:
                     pass
-                return {
+                result = {
                     "image": image_data,
                     "width": width,
                     "height": height,
                     "format": format,
                     "area_index": self._view3d_areas().index(area),
+                    "capture_method": capture_method,
                 }
             else:
-                return {
+                result = {
                     "success": True,
                     "width": width,
                     "height": height,
                     "filepath": filepath,
                     "area_index": self._view3d_areas().index(area),
+                    "capture_method": capture_method,
                 }
+            if capture_warnings:
+                result["warnings"] = capture_warnings
+            return result
 
         except Exception as e:
             # Clean up temp file on error
@@ -1349,9 +1388,10 @@ class BlenderMCPServer:
             if result.get("error"):
                 return result
 
-            return {
+            response = {
                 "success": True,
-                "viewport_render": True,
+                "viewport_render": result.get("capture_method") == "viewport_render",
+                "capture_method": result.get("capture_method"),
                 "output_path": result.get("filepath", output_path),
                 "width": result.get("width"),
                 "height": result.get("height"),
@@ -1359,6 +1399,9 @@ class BlenderMCPServer:
                 "area_index": result.get("area_index"),
                 "next_safe_action": "use output_path as a viewport preview artifact; use render_thumbnail_to_path for studio-lit thumbnails or render_image for final renders",
             }
+            if result.get("warnings"):
+                response["warnings"] = result["warnings"]
+            return response
         except Exception as e:
             return {"error": f"Failed to render viewport preview: {str(e)}"}
 
@@ -14577,6 +14620,42 @@ class BlenderMCPServer:
             for z in (min_corner.z, max_corner.z)
         ]
 
+    def _fit_camera_to_box(self, camera, bounds, target, margin=0.06, max_iterations=8):
+        """Pull the camera back along its view ray until every corner of the
+        target box projects inside the frame (with `margin`), using the current
+        lens, sensor and render aspect. Never moves the camera closer."""
+        from bpy_extras.object_utils import world_to_camera_view
+        scene = bpy.context.scene
+        corners = self._studio_box_corners(bounds)
+        limit = 0.5 - float(margin)
+
+        def spread():
+            bpy.context.view_layer.update()
+            projected = [world_to_camera_view(scene, camera, corner) for corner in corners]
+            if any(point.z <= 0 for point in projected):
+                return None
+            return max(max(abs(point.x - 0.5), abs(point.y - 0.5)) for point in projected)
+
+        direction = camera.location - target
+        if direction.length <= 1e-6:
+            direction = mathutils.Vector((0.35, -2.8, 0.55))
+        direction.normalize()
+        start_distance = (camera.location - target).length
+        distance = start_distance
+        current = spread()
+        for _ in range(max_iterations):
+            if current is not None and current <= limit:
+                break
+            distance *= 1.5 if current is None else max(1.02, current / limit)
+            camera.location = target + direction * distance
+            self._look_at(camera, target)
+            current = spread()
+        return {
+            "pulled_back": round(distance / max(start_distance, 1e-6), 3),
+            "max_corner_offset": None if current is None else round(current, 4),
+            "inside_frame": current is not None and current <= limit,
+        }
+
     def _look_at(self, obj, target):
         direction = mathutils.Vector(target) - obj.location
         if direction.length > 0:
@@ -14811,6 +14890,12 @@ class BlenderMCPServer:
             elif hasattr(scene, "eevee") and hasattr(scene.eevee, "taa_render_samples"):
                 scene.eevee.taa_render_samples = int(samples)
 
+            framing = None
+            if frame_camera:
+                # after lens + resolution: a wide row of targets must fit the frame
+                framing = self._fit_camera_to_box(camera, bounds, target)
+                camera.data.dof.focus_distance = max((camera.location - target).length, 0.1)
+
             world = scene.world or bpy.data.worlds.new("ViperMesh_World")
             scene.world = world
             world.color = tuple(float(c) for c in (background_color or config["color"])[:3])
@@ -14831,6 +14916,7 @@ class BlenderMCPServer:
                     "lens": camera.data.lens,
                     "focus_distance": camera.data.dof.focus_distance,
                     "active": bpy.context.scene.camera == camera,
+                    "framing": framing,
                 },
                 "lights": [
                     {"name": key.name, "energy": key.data.energy, "size": key.data.size},
