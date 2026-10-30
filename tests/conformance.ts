@@ -68,7 +68,7 @@ const client = new Client({ name: "preview-conformance", version: "1.0.0" })
 const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair()
 const imageToolResult = z.object({
   content: z.array(z.object({ type: z.string(), mimeType: z.string().optional() })),
-  structuredContent: z.record(z.unknown()).optional(),
+  structuredContent: z.record(z.string(), z.unknown()).optional(),
 })
 try {
   await Promise.all([server.connect(serverTransport), client.connect(clientTransport)])

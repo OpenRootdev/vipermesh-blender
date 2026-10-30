@@ -30,7 +30,14 @@
   "bin": {
     "vipermesh-blender": "./dist/public-portable-blender-mcp.js"
   },
-  "files": ["addon", "dist", "docs", "skills", "README.md", "LICENSE"],
+  "files": [
+    "addon",
+    "dist",
+    "docs",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "mcp": "tsx scripts/public-portable-blender-mcp.ts",
     "build": "tsup scripts/public-portable-blender-mcp.ts --format esm --platform node --out-dir dist --clean",
@@ -41,8 +48,8 @@
     "prepublishOnly": "npm run check"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.32.1",
-    "zod": "^3.23.8"
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

@@ -150,7 +150,7 @@ export function createPortableBlenderMcpServer(service: PortableMcpService) {
         "Call one approved ViperMesh Blender command with structured parameters.",
       inputSchema: z.object({
         name: z.string().trim().min(1).max(128),
-        params: z.record(z.unknown()).default({}),
+        params: z.record(z.string(), z.unknown()).default({}),
       }),
     },
     async ({ name, params }) => {
@@ -176,7 +176,7 @@ export function createPortableBlenderMcpServer(service: PortableMcpService) {
       inputSchema: z.object({
         commands: z.array(z.object({
           name: z.string().trim().min(1).max(128),
-          params: z.record(z.unknown()).default({}),
+          params: z.record(z.string(), z.unknown()).default({}),
         })).min(1).max(32),
         stopOnError: z.boolean().optional(),
       }),
@@ -200,10 +200,10 @@ export function createPortableBlenderMcpServer(service: PortableMcpService) {
         stage: z.enum(["build", "inspect_preview", "finalize"]),
         commands: z.array(z.object({
           name: z.string().trim().min(1).max(128),
-          params: z.record(z.unknown()).default({}),
+          params: z.record(z.string(), z.unknown()).default({}),
         })).min(1).max(32).optional(),
         targetNames: z.array(z.string().trim().min(1).max(256)).min(1).max(128).optional(),
-        spatialRelations: z.array(z.record(z.unknown())).max(128).optional(),
+        spatialRelations: z.array(z.record(z.string(), z.unknown())).max(128).optional(),
         previewPath: z.string().trim().min(1).max(2_048).optional(),
         renderPath: z.string().trim().min(1).max(2_048).optional(),
         blendPath: z.string().trim().min(1).max(2_048).optional(),
